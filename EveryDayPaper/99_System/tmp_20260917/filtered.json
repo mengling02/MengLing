@@ -1,0 +1,398 @@
+{
+  "target_date": "2026-09-17",
+  "date_windows": {
+    "recent_30d": {
+      "start": "2026-08-18",
+      "end": "2026-09-17"
+    },
+    "past_year": {
+      "start": "2025-09-17",
+      "end": "2026-08-17"
+    }
+  },
+  "total_recent": 200,
+  "total_hot": 0,
+  "total_unique": 200,
+  "top_papers": [
+    {
+      "id": "http://arxiv.org/abs/2609.16462v1",
+      "title": "Not All Relations Are Equal: Relation-Balanced and Calibrated Graph Learning for Provenance-Based Intrusion Detection",
+      "summary": "Provenance-Based Intrusion Detection Systems (PIDSs) detect Advanced Persistent Threats (APTs) by analyzing system interactions. However, existing methods largely treat relations uniformly, overlooking statistical heterogeneity; in CADETS, relation frequencies differ by approximately $140{,}000\\times$. This may cause PIDSs to focus more on frequent relations and overlook differences in normal error levels across relations, increasing the risk of false alarms and missed detections. We present RECAL, an unsupervised framework using relation-balanced masked graph learning to better capture rare interaction patterns. It further calibrates reconstruction errors against each relation's benign error distribution to produce comparable anomaly evidence, helping distinguish attacks from benign behavior and reduce false alarms. On three DARPA E3 datasets, RECAL achieves F1 scores of 99.99\\%, 99.93\\%, and 99.99\\%, outperforming the best baseline on each dataset by 0.88, 0.82, and 0.42 percentage points, respectively. Compared with the baseline reporting the lowest FPR, RECAL reduces mean FPR by approximately $105\\times$, $4\\times$, and $41\\times$.",
+      "authors": [
+        "Lijie Zheng",
+        "Ji He",
+        "Alessandro Brighente",
+        "Yulong Shen",
+        "Mauro Conti"
+      ],
+      "affiliations": [],
+      "published": "2026-09-15T00:31:01Z",
+      "published_date": "2026-09-15 00:31:01+00:00",
+      "updated": "2026-09-15T00:31:01Z",
+      "categories": [
+        "cs.CR",
+        "cs.LG"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2609.16462v1",
+      "url": "http://arxiv.org/abs/2609.16462v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.5,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 2.0,
+        "recommendation": 8.0
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "intrusion detection",
+        "cs.CR",
+        "cs.LG"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "Not_All_Relations_Are_Equal_Relation-Balanced_and_Calibrated_Graph_Learning_for_Provenance-Based_Intrusion_Detection"
+    },
+    {
+      "id": "http://arxiv.org/abs/2609.17171v1",
+      "title": "A unified framework for global and local interpretability using adaptive derivative-ordered random explanation",
+      "summary": "The interpretability of complex machine learning models is of paramount importance, especially in real-world high-stakes domains such as healthcare and finance. However, existing post-hoc interpretability methods suffer from inherent limitations: fragmented analytical processes, inadequate capacity to model nonlinear feature interactions, computational inefficiencies, and over-reliance on specific model architectures. To address these challenges, this paper provides a novel method - Adaptive Derivative-Ordered Random Explanation (ADORE) - that leverages first- and second-order derivatives to accommodate nonlinear model complexities, while enabling effective capture of feature-sample interactions within a unified analytical framework. ADORE integrates global feature importance with local sample contributions, precisely quantifying feature impact by capturing both magnitude and direction, and identifying critical samples influencing model decisions. Furthermore, it achieves computational efficiency through randomized singular value decomposition (SVD) and dynamic sparsity detection, making it scalable to large, high-dimensional datasets. Experiments across three data modalities - tabular, text, and image - demonstrate that ADORE outperforms existing methods such as LIME and SHAP in handling complex interactions and computational efficiency, while providing detailed and reliable explanations. To facilitate adoption and reproducibility, ADORE has been released as an open-source Python package, hosted on GitHub, enabling researchers and practitioners to readily adapt and apply our approach to their specific tasks, models, and datasets.",
+      "authors": [
+        "Lemen Chao",
+        "Ming Lei",
+        "Anran Fanga"
+      ],
+      "affiliations": [],
+      "published": "2026-09-15T13:34:10Z",
+      "published_date": "2026-09-15 13:34:10+00:00",
+      "updated": "2026-09-15T13:34:10Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2609.17171v1",
+      "url": "http://arxiv.org/abs/2609.17171v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.0,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 2.3,
+        "recommendation": 7.43
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "A_unified_framework_for_global_and_local_interpretability_using_adaptive_derivative-ordered_random_explanation"
+    },
+    {
+      "id": "http://arxiv.org/abs/2609.16898v1",
+      "title": "OptiPrime: Optimizing Private Inference through Protocol-Hardware Co-design",
+      "summary": "Private deep neural network (DNN) inference based on hybrid homomorphic encryption (HE) and multi-party computation (MPC) can protect user data with a formal guarantee, but at the cost of significant latency overhead due to HE. Customized HE accelerators have been proposed and have achieved orders-of-magnitude speedup for individual HE operations. However, when directly applying a commercial HE accelerator to state-of-the-art HE-MPC frameworks, we observe only limited end-to-end performance gain. This is because HE-MPC frameworks often require wireless transmission of input and output ciphertexts for each HE operation, leading to a severe network communication bottleneck. To overcome this challenge, we introduce OptiPrime, a protocol-hardware co-optimization framework for efficient private DNN inference. OptiPrime features a novel HE protocol for convolutions that substantially reduces the number of transmitted output ciphertexts and mitigates the network communication bottleneck. Meanwhile, as the new protocol introduces complex computation for fewer output ciphertext, we observe new memory access challenges due to a high volume of weight plaintexts and intermediate ciphertexts. Hence, we further propose a lightweight compression system for the weight plaintexts, reducing memory traffic by 10 times, as well as a specialized dataflow to maximize on-chip data reuse of intermediate ciphertexts. Extensive experiments show that our framework outperforms the Cheetah baseline by at most 5.7 times on CPUs and 4.2 times with an accelerator.",
+      "authors": [
+        "Jiangrui Yu",
+        "Ye Yu",
+        "Si Chen",
+        "Chenqi Lin",
+        "Wenxuan Zeng",
+        "Junfeng Fan",
+        "Mingyu Gao",
+        "Meng Li"
+      ],
+      "affiliations": [],
+      "published": "2026-09-15T09:29:58Z",
+      "published_date": "2026-09-15 09:29:58+00:00",
+      "updated": "2026-09-15T09:29:58Z",
+      "categories": [
+        "cs.AR",
+        "cs.CR",
+        "cs.LG"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2609.16898v1",
+      "url": "http://arxiv.org/abs/2609.16898v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.0,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 2.3,
+        "recommendation": 7.43
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "cs.CR",
+        "cs.LG"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "OptiPrime_Optimizing_Private_Inference_through_Protocol-Hardware_Co-design"
+    },
+    {
+      "id": "http://arxiv.org/abs/2609.16563v1",
+      "title": "The MAL Simulator: Cyber Operations Simulation based on Attack & Defense Graphs",
+      "summary": "We have developed the MAL Simulator, a cyber operation simulator based on the Meta Attack Language (MAL). The MAL Simulator is intended for decision-driven cyber attack and defense simulations, for system analysis and the development of automated agents. By building the simulator around an attack modeling language, it can be adapted to different target domains without modifying the source code. We used the simulator for two case studies where we trained two types of agents for automated cyber operations: a defensive agent and an offensive agent. To ground the experiments, we base the models in data collected from an emulated network implemented in the cyber range CRATE. We found that the trained attacker policy could reach the designated targets more efficiently than the compared search methods, and that the trained defender agent induced lower costs than a naive heuristic agent under noisy alert conditions. When testing the RL attacker against the RL defender, we found that the performance of the defenders dropped significantly. This emphasizes the importance of cyber attack simulators to facilitate training both offensive and defensive agents. The MAL Simulator and associated tooling is publicly available and provides common interfaces for compatibility with existing machine learning frameworks.",
+      "authors": [
+        "Jakob Nyberg",
+        "Sandor Berglund",
+        "Andrei Buhaiu",
+        "Joakim Loxdal",
+        "Pontus Johnson",
+        "Mathias Ekstedt"
+      ],
+      "affiliations": [],
+      "published": "2026-09-15T02:59:01Z",
+      "published_date": "2026-09-15 02:59:01+00:00",
+      "updated": "2026-09-15T02:59:01Z",
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2609.16563v1",
+      "url": "http://arxiv.org/abs/2609.16563v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.3,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 0.9,
+        "recommendation": 7.37
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "cyber attack",
+        "cs.CR",
+        "cs.AI"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "The_MAL_Simulator_Cyber_Operations_Simulation_based_on_Attack_&_Defense_Graphs"
+    },
+    {
+      "id": "http://arxiv.org/abs/2609.16804v1",
+      "title": "SOTER: A Generative Time-Series Foundation Model for Wearable Human Physiological Signals",
+      "summary": "Time-series foundation models have demonstrated strong cross-domain transfer, yet their common architectural assumptions remain poorly aligned with wearable physiological signals, which are multichannel, irregularly sampled, noisy, and governed by coupled continuous-time dynamics spanning distinct spectral scales. We present SOTER, a generative foundation model for wearable physiological time series that unifies cross-channel coupling, spectrum-guided expert specialization, and continuous-time latent evolution within a single pre-training framework. SOTER combines a spatial feature-aware backbone that models inter-signal dependencies, a power spectral density (PSD)-guided mixture-of-experts layer that routes representations to experts associated with fixed spectral bands through an inspectable, non-learned rule, and a neural controlled differential equation decoder that supports prediction and imputation at arbitrary timestamps. We pre-train SOTER on 226 billion time points from five public physiological datasets and evaluate the same pre-trained model across out-of-distribution zero-shot forecasting, frozen-encoder linear-probe classification, and continuous-time imputation on wearable benchmarks. SOTER achieves the best RMSE on 4 of 6 datasets and the best MAE on 5 of 6 in zero-shot forecasting, the highest average Macro-AUROC in classification, and the lowest imputation error on all six datasets at 75% missingness. It further remains robust to additive acquisition noise, matching or surpassing baselines evaluated on clean inputs even under the strongest corruption. These results indicate that domain-specialized foundation models for wearable physiology benefit from jointly modeling channel structure, spectral scale, and continuous-time dynamics.",
+      "authors": [
+        "Fangke Chen",
+        "Sirry Chen",
+        "Wei Chen",
+        "Zhongyu Wei"
+      ],
+      "affiliations": [],
+      "published": "2026-09-15T08:11:03Z",
+      "published_date": "2026-09-15 08:11:03+00:00",
+      "updated": "2026-09-15T08:11:03Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2609.16804v1",
+      "url": "http://arxiv.org/abs/2609.16804v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.0,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 2.0,
+        "recommendation": 7.33
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "SOTER_A_Generative_Time-Series_Foundation_Model_for_Wearable_Human_Physiological_Signals"
+    },
+    {
+      "id": "http://arxiv.org/abs/2609.16744v1",
+      "title": "A Systematic Evaluation of Machine Learning Methods for Fault Detection and Line Identification in Electrical Power Grids",
+      "summary": "The integration of renewable energy sources into the electrical grid introduces complex challenges in fault detection and coordination of grid recovery mechanisms. Traditional relay protection systems, which operate based on static rules and predefined thresholds, are inadequate for addressing these challenges, particularly in detecting and isolating faults such as short circuits. Consequently, the conventional methodologies applied to electrical network protection frequently fail to achieve optimal performance in fault detection, especially in terms of adherence to safety standards and the selective limitation of damage. Recent research indicates that machine learning (ML)-based approaches can effectively tackle these issues; however, variations in grid configurations and analysis windows have impeded consistent comparative assessments. In this study, we assess the efficacy of various ML models in detecting electrical faults and pinpointing defective transmission lines within a 10 ms measurement interval - a critical time-frame for real-time operational viability, for the first time. The most effective model attained an F1 score of 0.991 +/- 0.018 and demonstrated a processing time of 0.342ms +/- 0.509ms.",
+      "authors": [
+        "Julian Oelhaf",
+        "Georg Kordowich",
+        "Paula Andrea Pérez-Toro",
+        "Tomás Arias-Vergara",
+        "Andreas Maier",
+        "Johann Jäger",
+        "Siming Bayer"
+      ],
+      "affiliations": [],
+      "published": "2026-09-15T07:17:07Z",
+      "published_date": "2026-09-15 07:17:07+00:00",
+      "updated": "2026-09-15T07:17:07Z",
+      "categories": [
+        "cs.LG",
+        "eess.SP"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2609.16744v1",
+      "url": "http://arxiv.org/abs/2609.16744v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.0,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 2.0,
+        "recommendation": 7.33
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "cs.LG",
+        "eess.SP"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "A_Systematic_Evaluation_of_Machine_Learning_Methods_for_Fault_Detection_and_Line_Identification_in_Electrical_Power_Grids"
+    },
+    {
+      "id": "http://arxiv.org/abs/2609.16489v1",
+      "title": "Decoder Design Matters for ECG Delineation",
+      "summary": "Electrocardiogram (ECG) delineation identifies the boundaries of P waves, QRS complexes, and T waves, providing structural annotations that can guide AI models in learning to interpret ECGs. However, training accurate delineation models requires manual annotations that are scarce and time-consuming to obtain. Recent work addresses this limitation through semi-supervised learning (SSL), but the design of the architecture, particularly the decoder, has received less attention. To this end, we propose R-U-Net, an ECG delineation model that pairs a ResNet-18 encoder with a U-Net decoder. On SemiSegECG, R-U-Net outperforms the strongest evaluated ResNet-18 + fully convolutional network (FCN) head baseline in each of the 16 in-domain settings by 3.3-13.0 mIoU and achieves 82.6 mIoU in the cross-domain setting, an improvement of 8.1 mIoU. Controlled ablations show that decoder design contributes more to performance gains than the evaluated SSL methods, motivating further exploration of architectures for ECG delineation. All code is open-source at github.com/ELM-Research/ECG-Delineation.",
+      "authors": [
+        "Joseph Scharpf",
+        "William Han",
+        "Chaojing Duan",
+        "Michael A. Rosenberg",
+        "Emerson Liu",
+        "Ding Zhao"
+      ],
+      "affiliations": [],
+      "published": "2026-09-15T01:24:58Z",
+      "published_date": "2026-09-15 01:24:58+00:00",
+      "updated": "2026-09-15T01:24:58Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2609.16489v1",
+      "url": "http://arxiv.org/abs/2609.16489v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.0,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 2.0,
+        "recommendation": 7.33
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "Decoder_Design_Matters_for_ECG_Delineation"
+    },
+    {
+      "id": "http://arxiv.org/abs/2609.16450v1",
+      "title": "Early-Bird Decoding: Accelerating Diffusion LLMs with Learnable Block Sizes and Parallel Sampling",
+      "summary": "Diffusion large language models (dLLMs) offer a promising parallel decoding paradigm as an alternative to autoregressive generation through iterative unmasking. However, dLLMs typically require many steps before token confidence reaches the decoding threshold, resulting in inefficient inference even with block-wise KV caching. To accelerate dLLM inference, we for the first time propose an \"early-bird (EB)\" decoding framework, motivated by the observation that tokens with similarly low entropy tend to cluster and can be jointly decoded earlier, before reaching the confidence threshold. In particular, our EB-Decode framework integrates two key enablers: (1) a learnable network that adaptively groups tokens with similar uncertainty into variable-length blocks, rather than relying on fixed block sizes; (2) a position-aware sampler that learns to unmask tokens in parallel using fewer decoding steps within predicted variable-length blocks. Both components are developed without modifying pretrained dLLM weights and can therefore be directly deployed as plug-ins during serving, with negligible training and inference overhead. Extensive experiments across three models and four benchmarks consistently validate our observation and the effectiveness of EB-Decode, achieving 3.53-18.76$\\times$ higher throughput than the vanilla decoding method and up to 1.58$\\times$ higher throughput over the strongest baseline, Fast-dLLM, with comparable accuracy.",
+      "authors": [
+        "Lixuan Wei",
+        "Wei Zhou",
+        "Jianwen Wu",
+        "Yipeng Shen",
+        "Meiling Wang",
+        "Haoran You"
+      ],
+      "affiliations": [],
+      "published": "2026-09-15T00:12:37Z",
+      "published_date": "2026-09-15 00:12:37+00:00",
+      "updated": "2026-09-15T00:12:37Z",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2609.16450v1",
+      "url": "http://arxiv.org/abs/2609.16450v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.0,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 2.0,
+        "recommendation": 7.33
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "Early-Bird_Decoding_Accelerating_Diffusion_LLMs_with_Learnable_Block_Sizes_and_Parallel_Sampling"
+    },
+    {
+      "id": "http://arxiv.org/abs/2609.16338v1",
+      "title": "Breaking the 1.58-bit Barrier for Ternary LLMs",
+      "summary": "Ternary Large Language Models (LLM) store every weight as one of three symbols $\\{-1,0,+1\\}$, so the cost of a ternary model is conventionally referenced to the information-theoretic $\\log_2 3 \\approx 1.585$ bits per weight. The prevailing deployment format packs five ternary weights into one byte (five-trit packing), and due to the power-of-two group sizes used in practice this rounds up to $1.625$ bits per weight. This effective storage bit-width treats the three symbols $\\{-1,0,+1\\}$ as equiprobable. We measure the actual symbol distribution of 29 ternary LLM models and find that zeros account for up to $51.5\\%$ of all weights. Motivated by this finding, we introduce BITCOS, a simple distribution-adaptive layout comprised of a dense presence bitmap plus a compacted sign vector, and costs $2 - z$ bits per weight element given a zero density $z$ in the model's weights. BITCOS stores weights more compactly than the five-trit packing in 26 of the 29 tested models, and reaches $1.485$ bits per weight on the sparsest of them. BITCOS is amenable to efficient unpacking on modern processors and GPUs, and we present optimized unpacking sequences for AVX-512, AVX2 and Intel Xe2 GPUs. Measured against production state-of-the-art ternary matrix-vector multiplication kernels, at the zero densities real-world ternary models exhibit, the realized gain with our proposed layout is up to $1.28\\times$. Finally, we illustrate end-to-end LLM inference results on 5 different platforms (client and server CPUs, integrated and discrete Xe2 GPUs) where decode throughput improves by up to $1.18\\times$ on CPUs and $1.27\\times$ on GPUs.",
+      "authors": [
+        "Evangelos Georganas",
+        "Alexander Heinecke",
+        "Pradeep Dubey"
+      ],
+      "affiliations": [],
+      "published": "2026-09-14T20:54:24Z",
+      "published_date": "2026-09-14 20:54:24+00:00",
+      "updated": "2026-09-14T20:54:24Z",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2609.16338v1",
+      "url": "http://arxiv.org/abs/2609.16338v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.0,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 2.0,
+        "recommendation": 7.33
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "Breaking_the_1.58-bit_Barrier_for_Ternary_LLMs"
+    },
+    {
+      "id": "http://arxiv.org/abs/2609.16928v1",
+      "title": "Cybersecurity in Power Grids: Standards and Research Challenges",
+      "summary": "This paper examines Smart Grid cybersecurity, emphasizing the critical distinctions between IT and OT environments. It analyzes grid architecture, substation threats, and key international standards, specifically IEC 62351, IEC 62443, and ISO 27001. Finally, it overviews latest research trends, including AI-driven threat detection.",
+      "authors": [
+        "Ferran Bohigas-Daranas",
+        "Hamid Latif-Martinez",
+        "Nicolas Llorens",
+        "David Bru i Bru",
+        "Oriol Gomis-Bellmunt",
+        "Eduardo Prieto-Araujo",
+        "Pere Barlet-Ros"
+      ],
+      "affiliations": [],
+      "published": "2026-09-15T10:03:52Z",
+      "published_date": "2026-09-15 10:03:52+00:00",
+      "updated": "2026-09-15T10:03:52Z",
+      "categories": [
+        "cs.CR",
+        "eess.SY"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2609.16928v1",
+      "url": "http://arxiv.org/abs/2609.16928v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.3,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 0.5,
+        "recommendation": 7.23
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "grid cybersecurity",
+        "eess.SY",
+        "cs.CR"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "Cybersecurity_in_Power_Grids_Standards_and_Research_Challenges"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+language: "zh"
+name: "电网安全入门（工业AI与安全视角）"
+description: "贵州大学工业AI与安全实验室 · 电网安全方向 60 天知识储备计划"
+
+keywords:
+  - "smart grid"
+  - "power system"
+  - "SCADA"
+  - "ICS security"
+  - "false data injection"
+  - "state estimation"
+  - "intrusion detection"
+  - "cyber physical system"
+  - "federated learning"
+  - "large language model"
+  - "graph neural network"
+  - "reinforcement learning"
+  - "IEC 61850"
+  - "load forecasting"
+  - "anomaly detection"
+
+categories:
+  - "cs.CR"
+  - "cs.LG"
+  - "cs.AI"
+  - "eess.SY"
+  - "cs.NI"
+  - "cs.DC"
+
+domains:
+  L1-零基础起步:
+    priority: 1
+    note: "中文为主，建立电网世界观"
+  L2-电力系统基础:
+    priority: 2
+    note: "中英混合，理解电网怎么运行"
+  L3-工控与电网安全:
+    priority: 3
+    note: "英文，安全核心"
+  L4-AI与电网安全:
+    priority: 4
+    note: "英文，对接网安+AI 背景"
+  L5-前沿-LLM与智能体:
+    priority: 5
+    note: "英文，前沿选题"
+
+reading_plan:
+  total_papers: 37
+  daily: 2
+  push_time: ["09:00", "14:00"]

@@ -1,0 +1,26 @@
+# FDIA + GNN 实验环境依赖
+# 安装：pip install -r requirements.txt
+#
+# 若只需跑通传统方法（验证 FDIA 原理），装上面 5 个即可。
+# GNN 部分需要额外装 PyTorch 和 PyTorch Geometric，见下方说明。
+#
+# ⚠️ 国内网络建议用镜像加速：
+#   pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# ---- 基础（必需）----
+numpy>=1.24
+scipy>=1.10
+scikit-learn>=1.3
+networkx>=3.0
+pandapower>=2.14
+
+# ---- 可视化（可选）----
+matplotlib>=3.7
+seaborn>=0.12
+
+# ---- 深度学习（可选，GNN 部分需要）----
+# 推荐先按下面命令单独装，再装 torch-geometric：
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   pip install torch-geometric
+# torch>=2.0
+# torch-geometric>=2.4

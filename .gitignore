@@ -1,0 +1,40 @@
+# ============================================
+# WorkBuddy 知识库 .gitignore
+# 目标：排除工具缓存与虚拟环境，保留全部学习成果
+# ============================================
+
+# 工具缓存 / 虚拟环境（含 291MB torch_cpu.dll，GitHub 拒收 >100MB 文件）
+.workbuddy-ai/
+**/.workbuddy-ai/
+venv/
+**/venv/
+.venv/
+**/.venv/
+
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# 临时与备份
+*_backup_*/
+**/_backup_*/
+*.tmp
+*.bak
+*.log
+
+# 系统文件
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
+*~
+
+# 编辑器
+.vscode/
+.idea/

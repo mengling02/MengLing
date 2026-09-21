@@ -1,0 +1,113 @@
+# evil-read-arxiv Configuration File
+# 电网安全方向研究兴趣配置
+
+# Language setting (zh/en)
+language: "zh"
+
+# Obsidian Vault path
+vault_path: "C:/WorkBuddy/EveryDayPaper"
+
+# Papers directory relative to vault
+papers_dir: "20_Research/Papers"
+
+research_domains:
+  "电网安全与网络攻防":
+    keywords:
+      - "power grid security"
+      - "smart grid security"
+      - "cyber-physical power system"
+      - "cyber-physical security"
+      - "SCADA security"
+      - "false data injection"
+      - "FDIA"
+      - "cyber attack"
+      - "intrusion detection"
+      - "anomaly detection"
+      - "grid cybersecurity"
+      - "industrial control system"
+      - "ICS security"
+      - "attack detection"
+      - "vulnerability assessment"
+      - "adversarial attack"
+      - "state estimation attack"
+    arxiv_categories:
+      - "eess.SY"
+      - "cs.CR"
+      - "cs.LG"
+      - "cs.AI"
+      - "eess.SP"
+    priority: 10
+
+  "电力系统稳定与安全分析":
+    keywords:
+      - "power system stability"
+      - "transient stability"
+      - "voltage stability"
+      - "small-signal stability"
+      - "security constrained"
+      - "contingency analysis"
+      - "state estimation"
+      - "optimal power flow"
+      - "dynamic security assessment"
+      - "cascading failure"
+      - "grid resilience"
+      - "fault detection"
+      - "protection coordination"
+      - "wide area monitoring"
+      - "WAMS"
+      - "PMU"
+      - "synchronized measurement"
+    arxiv_categories:
+      - "eess.SY"
+      - "eess.SP"
+      - "math.OC"
+    priority: 9
+
+  "新能源并网与电网韧性":
+    keywords:
+      - "renewable integration"
+      - "high penetration renewable"
+      - "inverter-based resource"
+      - "IBR"
+      - "grid-forming"
+      - "grid-following"
+      - "microgrid security"
+      - "microgrid"
+      - "distributed energy resource"
+      - "DER"
+      - "frequency stability"
+      - "frequency regulation"
+      - "low inertia"
+      - "distribution network"
+      - "active distribution network"
+      - "demand response"
+      - "energy storage"
+      - "blackout"
+      - "restoration"
+    arxiv_categories:
+      - "eess.SY"
+      - "eess.SP"
+    priority: 8
+
+  "电网人工智能方法":
+    keywords:
+      - "machine learning power system"
+      - "deep learning power grid"
+      - "graph neural network power"
+      - "GNN power system"
+      - "reinforcement learning power system"
+      - "physics-informed neural network"
+      - "PINN power system"
+      - "transformer power system"
+      - "digital twin grid"
+      - "grid forecasting"
+      - "load forecasting"
+      - "fault diagnosis"
+    arxiv_categories:
+      - "eess.SY"
+      - "cs.LG"
+      - "cs.AI"
+    priority: 6
+
+excluded_keywords:
+  - "workshop"

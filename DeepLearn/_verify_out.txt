@@ -1,0 +1,67 @@
+共 82 个唯一 arXiv 编号，开始向 arXiv API 查询…
+
+成功取回 82 条标题
+
+====================================================================================================
+疑似不匹配 15 条
+====================================================================================================
+
+arXiv:1709.06743   [docs\Week06_论文阅读与电网场景.md]
+   文档写的 : pandapower — An Open-Source Python Tool for Modeling, Analysis, and Optimization of Electr
+   实际是   : pandapower - an Open Source Python Tool for Convenient Modeling, Analysis and Optimization
+
+arXiv:1709.06743   [docs\Week07_论文复现与实验能力.md]
+   文档写的 : pandapower: A Python package for power system analysis
+   实际是   : pandapower - an Open Source Python Tool for Convenient Modeling, Analysis and Optimization
+
+arXiv:1709.06743   [docs\Week09_收尾与投稿准备.md]
+   文档写的 : pandapower: A Python package for power system analysis
+   实际是   : pandapower - an Open Source Python Tool for Convenient Modeling, Analysis and Optimization
+
+arXiv:1709.06743   [docs\Week17_完整课题实战.md]
+   文档写的 : pandapower: A Python package for power system analysis
+   实际是   : pandapower - an Open Source Python Tool for Convenient Modeling, Analysis and Optimization
+
+arXiv:1710.10766   [docs\Week12_对抗攻防进阶.md]
+   文档写的 : Boosting Adversarial Attacks with Momentum
+   实际是   : PixelDefend: Leveraging Generative Models to Understand and Defend against Adversarial Exa
+
+arXiv:1710.10766   [docs\Week12_对抗攻防进阶.md]
+   文档写的 : Boosting Adversarial Attacks with Momentum
+   实际是   : PixelDefend: Leveraging Generative Models to Understand and Defend against Adversarial Exa
+
+arXiv:1711.10561   [docs\Week13_物理信息神经网络与约束建模.md]
+   文档写的 : Physics-Informed Neural Networks: A Deep Learning Framework for Solving Forward and Invers
+   实际是   : Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differ
+
+arXiv:1711.10561   [docs\Week13_物理信息神经网络与约束建模.md]
+   文档写的 : Physics-Informed Neural Networks: A Deep Learning Framework for Solving Forward and Invers
+   实际是   : Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differ
+
+arXiv:1712.07113   [docs\Week12_对抗攻防进阶.md]
+   文档写的 : Query-Efficient Black-Box Adversarial Attacks with NES
+   实际是   : Query-Efficient Black-box Adversarial Examples (superceded)
+
+arXiv:1810.12715   [docs\Week12_对抗攻防进阶.md]
+   文档写的 : Scalable Verified Training for Provably Robust Image Classification
+   实际是   : On the Effectiveness of Interval Bound Propagation for Training Verifiably Robust Models
+
+arXiv:1810.12715   [docs\Week12_对抗攻防进阶.md]
+   文档写的 : Scalable Verified Training for Provably Robust Image Classification
+   实际是   : On the Effectiveness of Interval Bound Propagation for Training Verifiably Robust Models
+
+arXiv:1906.04164   [docs\Week11_生成模型与数据增强.md]
+   文档写的 : TimeGAN: Time-series Generative Adversarial Networks
+   实际是   : FAKTA: An Automatic End-to-End Fact Checking System
+
+arXiv:2409.04609   [docs\Week07_论文复现与实验能力.md]
+   文档写的 : Detection of False Data Injection Attacks on Power System
+   实际是   : Detection of False Data Injection Attacks (FDIA) on Power Dynamical Systems With a State P
+
+arXiv:2409.04609   [docs\Week08_实验设计与论文写作.md]
+   文档写的 : Detection of False Data Injection Attacks on Power System
+   实际是   : Detection of False Data Injection Attacks (FDIA) on Power Dynamical Systems With a State P
+
+arXiv:2409.04609   [docs\Week09_收尾与投稿准备.md]
+   文档写的 : Detection of False Data Injection Attacks on Power System
+   实际是   : Detection of False Data Injection Attacks (FDIA) on Power Dynamical Systems With a State P

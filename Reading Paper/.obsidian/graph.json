@@ -1,0 +1,100 @@
+{
+  "collapse-filter": false,
+  "search": "",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:\"90_概念卡片\"",
+      "color": {
+        "a": 1,
+        "rgb": 14711609
+      }
+    },
+    {
+      "query": "path:\"L1-零基础起步\"",
+      "color": {
+        "a": 1,
+        "rgb": 5020648
+      }
+    },
+    {
+      "query": "path:\"L2-电力系统基础\"",
+      "color": {
+        "a": 1,
+        "rgb": 3516015
+      }
+    },
+    {
+      "query": "path:\"L3-工控与电网安全\"",
+      "color": {
+        "a": 1,
+        "rgb": 14239039
+      }
+    },
+    {
+      "query": "path:\"L4-AI与电网安全\"",
+      "color": {
+        "a": 1,
+        "rgb": 9133302
+      }
+    },
+    {
+      "query": "path:\"L5-前沿-LLM与智能体\"",
+      "color": {
+        "a": 1,
+        "rgb": 15381256
+      }
+    },
+    {
+      "query": "path:\"L6-攻击技术专题\"",
+      "color": {
+        "a": 1,
+        "rgb": 14239039
+      }
+    },
+    {
+      "query": "path:\"L7-检测与防御专题\"",
+      "color": {
+        "a": 1,
+        "rgb": 3049153
+      }
+    },
+    {
+      "query": "path:\"L8-AI安全与隐私专题\"",
+      "color": {
+        "a": 1,
+        "rgb": 9133302
+      }
+    },
+    {
+      "query": "path:\"L9-新能源与新型电力系统安全\"",
+      "color": {
+        "a": 1,
+        "rgb": 1482885
+      }
+    },
+    {
+      "query": "path:\"L10-工程与实验\"",
+      "color": {
+        "a": 1,
+        "rgb": 12154638
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": -0.7,
+  "nodeSizeMultiplier": 1.3,
+  "lineSizeMultiplier": 0.7,
+  "collapse-forces": false,
+  "centerStrength": 0.3,
+  "repelStrength": 13,
+  "linkStrength": 0.55,
+  "linkDistance": 160,
+  "scale": 1,
+  "close": false
+}

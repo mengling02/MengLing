@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" width="760" height="500"
+     font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="a2r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <rect width="760" height="500" fill="#ffffff"/>
+  <text x="380" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#0f172a">
+    FDI 攻击为什么能绕过坏数据检测（BDD）
+  </text>
+  <text x="380" y="52" text-anchor="middle" font-size="12.5" fill="#64748b">
+    攻击者不直接改状态，而是改量测 —— 且改得"恰好"让残差一字不变
+  </text>
+
+  <!-- ============ 正常情况 ============ -->
+  <rect x="24" y="72" width="712" height="106" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.4"/>
+  <text x="40" y="92" font-size="12.5" font-weight="700" fill="#15803d">① 正常情况下：残差能抓住坏数据</text>
+
+  <rect x="35" y="104" width="150" height="58" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.4"/>
+  <text x="110" y="128" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">量测 z</text>
+  <text x="110" y="147" text-anchor="middle" font-size="10.5" fill="#64748b">SCADA 采集到的值</text>
+
+  <rect x="215" y="104" width="150" height="58" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.4"/>
+  <text x="290" y="124" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">状态估计</text>
+  <text x="290" y="144" text-anchor="middle" font-size="11" fill="#334155">x̂ = (HᵀH)⁻¹Hᵀz</text>
+
+  <rect x="395" y="104" width="150" height="58" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.4"/>
+  <text x="470" y="124" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">残差</text>
+  <text x="470" y="144" text-anchor="middle" font-size="11" fill="#334155">r = z − Hx̂</text>
+
+  <rect x="575" y="104" width="150" height="58" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.8"/>
+  <text x="650" y="124" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">‖r‖ &gt; τ ?</text>
+  <text x="650" y="145" text-anchor="middle" font-size="11.5" fill="#166534">否 → 数据干净 ✓</text>
+
+  <line x1="185" y1="133" x2="211" y2="133" stroke="#475569" stroke-width="1.8" marker-end="url(#a2)"/>
+  <line x1="365" y1="133" x2="391" y2="133" stroke="#475569" stroke-width="1.8" marker-end="url(#a2)"/>
+  <line x1="545" y1="133" x2="571" y2="133" stroke="#475569" stroke-width="1.8" marker-end="url(#a2)"/>
+
+  <!-- ============ 被攻击 ============ -->
+  <rect x="24" y="196" width="712" height="106" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="1.4"/>
+  <text x="40" y="216" font-size="12.5" font-weight="700" fill="#b91c1c">② 被攻击后：状态被偏移了，残差却纹丝不动</text>
+
+  <rect x="35" y="228" width="150" height="58" rx="8" fill="#ffffff" stroke="#dc2626" stroke-width="1.8"/>
+  <text x="110" y="250" text-anchor="middle" font-size="13" font-weight="600" fill="#991b1b">z + Δz</text>
+  <text x="110" y="270" text-anchor="middle" font-size="11" fill="#b91c1c">其中 Δz = H·Δx</text>
+
+  <rect x="215" y="228" width="150" height="58" rx="8" fill="#ffffff" stroke="#dc2626" stroke-width="1.8"/>
+  <text x="290" y="248" text-anchor="middle" font-size="12" font-weight="600" fill="#991b1b">状态被偏移</text>
+  <text x="290" y="269" text-anchor="middle" font-size="11.5" fill="#b91c1c">x̂ → x̂ + Δx</text>
+
+  <rect x="395" y="228" width="150" height="58" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="2.2"/>
+  <text x="470" y="248" text-anchor="middle" font-size="12" font-weight="700" fill="#92400e">r 完全不变</text>
+  <text x="470" y="269" text-anchor="middle" font-size="11" fill="#92400e">= z − Hx̂</text>
+
+  <rect x="575" y="228" width="150" height="58" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.8"/>
+  <text x="650" y="248" text-anchor="middle" font-size="12" font-weight="700" fill="#b91c1c">‖r‖ &gt; τ ?</text>
+  <text x="650" y="269" text-anchor="middle" font-size="11.5" fill="#b91c1c">仍然"否" → 漏报 ✗</text>
+
+  <line x1="185" y1="257" x2="211" y2="257" stroke="#dc2626" stroke-width="1.8" marker-end="url(#a2r)"/>
+  <line x1="365" y1="257" x2="391" y2="257" stroke="#dc2626" stroke-width="1.8" marker-end="url(#a2r)"/>
+  <line x1="545" y1="257" x2="571" y2="257" stroke="#dc2626" stroke-width="1.8" marker-end="url(#a2r)"/>
+
+  <!-- 推导 -->
+  <rect x="35" y="322" width="690" height="112" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="52" y="345" font-size="12.5" font-weight="700" fill="#0f172a">把这两步算一遍，就明白"为什么"了</text>
+  <text x="52" y="370" font-size="12" fill="#334155">状态： x̂_bad = (HᵀH)⁻¹Hᵀ(z + HΔx) = (HᵀH)⁻¹Hᵀz + (HᵀH)⁻¹HᵀHΔx = x̂ + Δx</text>
+  <text x="52" y="396" font-size="12" fill="#334155">残差： r_bad = (z + HΔx) − H(x̂ + Δx) = z − Hx̂ + HΔx − HΔx = r</text>
+  <text x="52" y="421" font-size="12" font-weight="600" fill="#b91c1c">⇒ Δz 与 HΔx 这两项恰好抵消。攻击者要做的，只是"知道 H"。</text>
+
+  <!-- 底部要点 -->
+  <rect x="35" y="448" width="690" height="40" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="52" y="473" font-size="11.5" fill="#1e3a8a">
+    ★ 关键推论：攻击的门槛不在算力，而在"知道多少 H"。这正是选题 B（攻击者信息边界）的出发点。
+  </text>
+</svg>

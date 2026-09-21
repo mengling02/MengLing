@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" width="760" height="500"
+     font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect width="760" height="500" fill="#ffffff"/>
+  <text x="380" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#0f172a">
+    自注意力：Q / K / V 与那个 √d<tspan dy="5" font-size="12">k</tspan>
+  </text>
+  <text x="380" y="52" text-anchor="middle" font-size="12.5" fill="#64748b">
+    一句话直觉：拿我的"问题"去比对所有"标签"，按匹配度把"内容"加权取回来
+  </text>
+
+  <!-- ① 三个向量 -->
+  <text x="40" y="84" font-size="12.5" font-weight="700" fill="#2563eb">① 每个位置投影出三个向量</text>
+
+  <rect x="40" y="96" width="200" height="66" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+  <text x="140" y="120" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1e3a8a">Q · Query</text>
+  <text x="140" y="140" text-anchor="middle" font-size="11" fill="#334155">"我要找什么？"</text>
+  <text x="140" y="156" text-anchor="middle" font-size="10.5" fill="#64748b">Q = X·W<tspan dy="3.5" font-size="8.5">Q</tspan></text>
+
+  <rect x="280" y="96" width="200" height="66" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.6"/>
+  <text x="380" y="120" text-anchor="middle" font-size="13.5" font-weight="700" fill="#92400e">K · Key</text>
+  <text x="380" y="140" text-anchor="middle" font-size="11" fill="#334155">"我是谁 / 我的标签"</text>
+  <text x="380" y="156" text-anchor="middle" font-size="10.5" fill="#64748b">K = X·W<tspan dy="3.5" font-size="8.5">K</tspan></text>
+
+  <rect x="520" y="96" width="200" height="66" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.6"/>
+  <text x="620" y="120" text-anchor="middle" font-size="13.5" font-weight="700" fill="#15803d">V · Value</text>
+  <text x="620" y="140" text-anchor="middle" font-size="11" fill="#334155">"我实际携带的内容"</text>
+  <text x="620" y="156" text-anchor="middle" font-size="10.5" fill="#64748b">V = X·W<tspan dy="3.5" font-size="8.5">V</tspan></text>
+
+  <!-- ② 计算流程 -->
+  <text x="40" y="196" font-size="12.5" font-weight="700" fill="#2563eb">② 四步算完</text>
+
+  <rect x="40" y="208" width="140" height="58" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="110" y="232" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">Q · Kᵀ</text>
+  <text x="110" y="252" text-anchor="middle" font-size="10.5" fill="#64748b">两两点积 → 相似度</text>
+
+  <rect x="205" y="208" width="140" height="58" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.8"/>
+  <text x="275" y="232" text-anchor="middle" font-size="13" font-weight="600" fill="#9a3412">
+    ÷ √d<tspan dy="4" font-size="9.5">k</tspan>
+  </text>
+  <text x="275" y="252" text-anchor="middle" font-size="10.5" fill="#9a3412">★ 缩放</text>
+
+  <rect x="370" y="208" width="140" height="58" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="440" y="232" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">softmax</text>
+  <text x="440" y="252" text-anchor="middle" font-size="10.5" fill="#64748b">归一成权重，和为 1</text>
+
+  <rect x="535" y="208" width="140" height="58" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="605" y="232" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">× V</text>
+  <text x="605" y="252" text-anchor="middle" font-size="10.5" fill="#64748b">按权重加权求和</text>
+
+  <line x1="180" y1="237" x2="201" y2="237" stroke="#475569" stroke-width="1.8" marker-end="url(#a5)"/>
+  <line x1="345" y1="237" x2="366" y2="237" stroke="#475569" stroke-width="1.8" marker-end="url(#a5)"/>
+  <line x1="510" y1="237" x2="531" y2="237" stroke="#475569" stroke-width="1.8" marker-end="url(#a5)"/>
+
+  <text x="380" y="292" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1e3a8a">
+    Attention(Q, K, V) = softmax( Q·Kᵀ / √d<tspan dy="4.5" font-size="10">k</tspan> ) · V
+  </text>
+
+  <!-- ③ 为什么除 sqrt(d_k) -->
+  <rect x="40" y="312" width="680" height="112" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="58" y="336" font-size="12.5" font-weight="700" fill="#9a3412">
+    ③ 为什么必须除 √d<tspan dy="4" font-size="9.5">k</tspan>（这是面试与考试的高频点）
+  </text>
+  <text x="58" y="360" font-size="11.5" fill="#334155">
+    设 q、k 的每一维独立、均值 0、方差 1，则点积 q·k = Σ qᵢkᵢ 的方差是 d<tspan dy="3.5" font-size="9">k</tspan>。
+  </text>
+  <text x="58" y="381" font-size="11.5" fill="#334155">
+    ⇒ 维度越高，点积的数值波动越大 ⇒ 送进 softmax 后会"一家独大"，梯度接近 0。
+  </text>
+  <text x="58" y="403" font-size="11.5" font-weight="600" fill="#9a3412">
+    除以 √d<tspan dy="3.5" font-size="9">k</tspan> 后方差回到 1，softmax 的输入尺度与维度解耦 —— 这就是全部理由。
+  </text>
+
+  <!-- ④ 输出形状 -->
+  <rect x="230" y="440" width="300" height="44" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4"/>
+  <text x="380" y="468" text-anchor="middle" font-size="12" fill="#0f172a">
+    输出形状与输入相同：[ 序列长度, d_model ]
+  </text>
+</svg>

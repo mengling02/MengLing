@@ -1,0 +1,23 @@
+{
+  "enabled": false,
+  "appearance": "light",
+  "variables": {
+    "--background-primary": "#ffffff",
+    "--background-secondary": "#f6f6f6",
+    "--background-secondary-alt": "#fcfcfc",
+    "--background-modifier-border": "#e4e4e4",
+    "--background-modifier-error": "#e93147",
+    "--background-modifier-success": "#08b94e",
+    "--text-normal": "#222222",
+    "--text-muted": "#5c5c5c",
+    "--text-faint": "#ababab",
+    "--text-accent": "hsl(258, 88%, 66%)",
+    "--interactive-normal": "#ffffff",
+    "--interactive-hover": "#fafafa",
+    "--interactive-accent": "hsl(calc(258 - 1), calc(88% * 1.01), calc(66% * 1.075))",
+    "--font-interface": "'??', '??', '??', ui-sans-serif, -apple-system, BlinkMacSystemFont, system-ui, \"Segoe UI\", \"Google Sans Flex\", Roboto, \"Inter Variable\", \"Inter\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+    "--font-text": "'??', '??', ui-sans-serif, -apple-system, BlinkMacSystemFont, system-ui, \"Segoe UI\", \"Google Sans Flex\", Roboto, \"Inter Variable\", \"Inter\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif",
+    "--font-monospace": "'??', '??', ui-monospace, SFMono-Regular, \"Cascadia Mono\", \"Roboto Mono\", \"DejaVu Sans Mono\", \"Liberation Mono\", Menlo, Monaco, \"Consolas\", \"Source Code Pro\", monospace"
+  },
+  "updatedAt": "2026-09-17T02:22:45.020Z"
+}

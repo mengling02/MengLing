@@ -1,0 +1,210 @@
+{
+  "main": {
+    "id": "67727aebe3e41f53",
+    "type": "split",
+    "children": [
+      {
+        "id": "d5caeee4ea825e63",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "941b95f66e584b59",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "关系图谱"
+            }
+          },
+          {
+            "id": "a14d66f6af37859e",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "关系图谱"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "04b9cb6e503119a1",
+    "type": "split",
+    "children": [
+      {
+        "id": "ba24847ff1c5fa07",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "92e26a9af845120a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "cb574c78e1be12b2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "3b5641e21dfe7db4",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200.3571434020996
+  },
+  "right": {
+    "id": "474cde65ffde771c",
+    "type": "split",
+    "children": [
+      {
+        "id": "00e48b0d92a65375",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "75d14dfbd08b065c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "反向链接"
+            }
+          },
+          {
+            "id": "a794c4b6f7d5799b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "ff54b40a7c218ce4",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "a1babe58db0cdf51",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "efc0ea11c451ef1f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "vault-web-launcher:Open Vault Web": false,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false,
+      "templater-obsidian:Templater": false,
+      "remotely-save:Remotely Save": false
+    }
+  },
+  "active": "a14d66f6af37859e",
+  "lastOpenFiles": [
+    "📚 论文库总览.md",
+    "10_Daily/2026-09-16论文推荐.md",
+    "10_Daily/2026-09-17论文推荐.md",
+    "20_Research/Papers/Predefined-Time_Integral_Reinforcement_Learning_for_Saturated_Unknown_Nonlinear_Multi-Agent_Systems_Under_FDI_Attacks_and_Disturbances.md",
+    "20_Research/Papers/LLaTSA_Large_Language_Model-Aligned_General-Purpose_Transient_Stability_Analysis.md",
+    "10_Daily/2026-09-15论文推荐.md",
+    "20_Research/Papers/Cybersecurity_in_Power_Grids_Standards_and_Research_Challenges.md",
+    "20_Research/Papers/images/cybergrid_p2_img1.png",
+    "99_System/Templates/论文笔记模板.md"
+  ]
+}

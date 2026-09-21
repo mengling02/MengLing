@@ -1,0 +1,8 @@
+{
+  "autoStart": true,
+  "nodePath": "C:\\Program Files\\nodejs\\node.exe",
+  "openOnAutoStart": false,
+  "port": 4177,
+  "themeSource": "vault-web",
+  "token": "78366bbaff9a7461e2013a7e26a48e4eb879c2e4a2a9cc82a1fe1f83b077f7d8"
+}

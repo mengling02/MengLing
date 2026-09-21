@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vault Web</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <button id="toggleSidebarButton" class="icon-button small sidebar-toggle" title="Hide notes sidebar" aria-label="Hide notes sidebar">‹</button>
+      <div id="sidebarResizeHandle" class="resize-handle sidebar-resize" role="separator" aria-orientation="vertical" title="Resize notes sidebar"></div>
+      <div class="topbar">
+        <button id="newNoteButton" class="icon-button" title="New note">+</button>
+      </div>
+      <input id="searchInput" class="search" placeholder="Search by title or path" />
+      <div id="noteList" class="note-list">
+        <div class="status">Loading notes...</div>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="editor-header">
+        <div>
+          <div class="title-row">
+            <span id="saveStatus" class="save-status saved" title="Saved" aria-label="Saved"></span>
+            <div id="noteTitle" class="note-title">Choose a note</div>
+          </div>
+          <div id="notePath" class="note-path">Markdown files from the vault</div>
+        </div>
+        <div class="actions">
+          <button id="themeToggleButton" class="icon-button tool" title="Toggle light/dark theme" aria-label="Toggle light/dark theme">☾</button>
+          <button id="openObsidianButton" class="icon-button tool obsidian-button" title="Open current note in Obsidian" aria-label="Open current note in Obsidian">
+            <img src="/assets/obsidian-logo.svg" alt="" />
+          </button>
+          <button id="modeToggleButton" class="icon-button tool active" title="Toggle Preview/Edit" aria-label="Toggle Preview/Edit">✎</button>
+        </div>
+      </header>
+
+      <section class="editor-shell">
+        <textarea id="editor" spellcheck="true"></textarea>
+        <div id="wikiSuggest" class="wiki-suggest hidden"></div>
+        <article id="preview" class="preview hidden"></article>
+      </section>
+
+      <aside class="links-panel">
+        <div id="linksResizeHandle" class="resize-handle links-resize" role="separator" aria-orientation="horizontal" title="Resize links panel"></div>
+        <button id="toggleLinksButton" class="icon-button small links-toggle" title="Hide or show links panel" aria-label="Hide or show links panel">⌄</button>
+        <section>
+          <h2>Links</h2>
+          <div id="outgoingLinks" class="link-list"></div>
+        </section>
+        <section>
+          <h2>Backlinks</h2>
+          <div id="backlinks" class="link-list"></div>
+        </section>
+      </aside>
+    </main>
+
+    <dialog id="newNoteDialog">
+      <form method="dialog" id="newNoteForm">
+        <h2>New note</h2>
+        <label>
+          Title
+          <input id="newNoteTitle" autofocus />
+        </label>
+        <label>
+          Folder
+          <select id="newNoteFolder">
+            <option value="Base">Base</option>
+            <option value="">Vault root</option>
+          </select>
+        </label>
+        <div class="dialog-actions">
+          <button value="cancel">Cancel</button>
+          <button id="createNoteButton" value="default">Create</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="/vendor/mermaid.min.js"></script>
+    <script defer src="/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 572" width="760" height="572"
+     font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker></defs>
+  <rect width="760" height="572" fill="#ffffff"/>
+  <text x="380" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#0f172a">状态估计：把量测压成状态，再用残差判断"数据脏没脏"</text>
+  <text x="380" y="54" text-anchor="middle" font-size="12.5" fill="#64748b">z = H·x + e　→　x̂ = (HᵀH)⁻¹Hᵀz　→　r = z − H·x̂　→　‖r‖ &gt; τ ?</text>
+  <text x="40" y="84" font-size="12.5" font-weight="700" fill="#2563eb">① 两个输入</text>
+  <rect x="40" y="98" width="150" height="56" rx="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+  <text x="115" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a8a">量测 z</text>
+  <text x="115" y="141" text-anchor="middle" font-size="10.5" fill="#475569">m 维 · SCADA / PMU 采集</text>
+  <rect x="40" y="184" width="150" height="56" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+  <text x="115" y="208" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3412">H 矩阵</text>
+  <text x="115" y="227" text-anchor="middle" font-size="10.5" fill="#9a3412">m×n · 由拓扑与线路参数决定</text>
+  <text x="240" y="84" font-size="12.5" font-weight="700" fill="#2563eb">② 估计过程</text>
+  <rect x="240" y="128" width="180" height="84" rx="9" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.6"/>
+  <text x="330" y="156" text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a">加权最小二乘</text>
+  <text x="330" y="178" text-anchor="middle" font-size="11.5" fill="#334155">x̂ = (HᵀH)⁻¹Hᵀz</text>
+  <text x="330" y="197" text-anchor="middle" font-size="10.5" fill="#64748b">假设噪声高斯 → 等价于 MLE</text>
+  <text x="460" y="84" font-size="12.5" font-weight="700" fill="#2563eb">③ 两个输出</text>
+  <rect x="460" y="128" width="120" height="84" rx="9" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.6"/>
+  <text x="520" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#5b21b6">状态 x̂</text>
+  <text x="520" y="178" text-anchor="middle" font-size="10.5" fill="#6d28d9">n 维：电压幅值 + 相角</text>
+  <text x="520" y="196" text-anchor="middle" font-size="10.5" fill="#6d28d9">EMS 的"当前快照"</text>
+  <rect x="610" y="128" width="120" height="84" rx="9" fill="#fef2f2" stroke="#dc2626" stroke-width="1.6"/>
+  <text x="670" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#991b1b">残差 r</text>
+  <text x="670" y="178" text-anchor="middle" font-size="10.5" fill="#b91c1c">r = z − H·x̂</text>
+  <text x="670" y="196" text-anchor="middle" font-size="10.5" fill="#b91c1c">攻击者要让它不变</text>
+  <line x1="190" y1="126" x2="236" y2="150" stroke="#475569" stroke-width="1.8" marker-end="url(#ah)"/>
+  <line x1="190" y1="212" x2="236" y2="190" stroke="#475569" stroke-width="1.8" marker-end="url(#ah)"/>
+  <line x1="420" y1="170" x2="456" y2="170" stroke="#475569" stroke-width="1.8" marker-end="url(#ah)"/>
+  <line x1="580" y1="170" x2="606" y2="170" stroke="#475569" stroke-width="1.8" marker-end="url(#ah)"/>
+  <path d="M 115 154 L 115 244 L 670 244 L 670 216" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5,4" marker-end="url(#ah)"/>
+  <text x="360" y="238" text-anchor="middle" font-size="10.5" fill="#64748b">残差还要用到原始 z（虚线）</text>
+  <text x="40" y="286" font-size="12.5" font-weight="700" fill="#9a3412">H 长什么样：每行一个量测，每列一个状态，非零元只出现在"物理相连"的位置</text>
+  <rect x="60" y="300" width="252" height="102" fill="#ffffff" stroke="#94a3b8" stroke-width="1.3"/>
+  <line x1="60" y1="300" x2="60" y2="402" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="102" y1="300" x2="102" y2="402" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="144" y1="300" x2="144" y2="402" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="186" y1="300" x2="186" y2="402" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="228" y1="300" x2="228" y2="402" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="270" y1="300" x2="270" y2="402" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="312" y1="300" x2="312" y2="402" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="60" y1="300" x2="312" y2="300" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="60" y1="317" x2="312" y2="317" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="60" y1="334" x2="312" y2="334" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="60" y1="351" x2="312" y2="351" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="60" y1="368" x2="312" y2="368" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="60" y1="385" x2="312" y2="385" stroke="#e2e8f0" stroke-width="0.9"/>
+  <line x1="60" y1="402" x2="312" y2="402" stroke="#e2e8f0" stroke-width="0.9"/>
+  <rect x="63" y="302.5" width="36" height="12" fill="#ea580c" rx="2"/>
+  <rect x="105" y="302.5" width="36" height="12" fill="#ea580c" rx="2"/>
+  <rect x="105" y="319.5" width="36" height="12" fill="#ea580c" rx="2"/>
+  <rect x="147" y="319.5" width="36" height="12" fill="#ea580c" rx="2"/>
+  <rect x="189" y="336.5" width="36" height="12" fill="#ea580c" rx="2"/>
+  <rect x="231" y="336.5" width="36" height="12" fill="#ea580c" rx="2"/>
+  <rect x="147" y="353.5" width="36" height="12" fill="#ea580c" rx="2"/>
+  <rect x="273" y="353.5" width="36" height="12" fill="#ea580c" rx="2"/>
+  <rect x="63" y="370.5" width="36" height="12" fill="#ea580c" rx="2"/>
+  <rect x="231" y="370.5" width="36" height="12" fill="#ea580c" rx="2"/>
+  <rect x="189" y="387.5" width="36" height="12" fill="#ea580c" rx="2"/>
+  <rect x="273" y="387.5" width="36" height="12" fill="#ea580c" rx="2"/>
+  <text x="60" y="424" font-size="11" fill="#334155">行 = 一个量测　|　列 = 一个状态　|　橙色 = 非零元</text>
+  <text x="60" y="444" font-size="10.5" fill="#64748b">（示意：真实 H 更稀疏，元素值由线路阻抗决定）</text>
+  <rect x="346" y="296" width="382" height="150" rx="9" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="364" y="320" font-size="12.5" font-weight="700" fill="#0f172a">为什么 H 这么重要</text>
+  <text x="364" y="344" font-size="11.5" fill="#334155">① 它把"物理"编码进了检测问题</text>
+  <text x="364" y="366" font-size="11.5" fill="#334155">② 它的结构 = 拓扑，与运行数据无关</text>
+  <text x="364" y="388" font-size="11.5" fill="#334155">③ 攻击者要绕过 BDD，必须先知道它</text>
+  <text x="364" y="412" font-size="11.5" font-weight="700" fill="#b91c1c">⇒ 所以"知道多少 H" = 攻击强度</text>
+  <text x="364" y="434" font-size="10.5" fill="#64748b">这正是选题 B 能把"信息边界"参数化的原因</text>
+  <rect x="40" y="462" width="688" height="94" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.3"/>
+  <text x="58" y="486" font-size="12.5" font-weight="700" fill="#15803d">残差为什么能当检测器</text>
+  <text x="58" y="508" font-size="11.5" fill="#334155">数据干净时，r 里只有噪声；某个量测被随机篡改时，r 里会多出一份"对不上物理"的成分，‖r‖ 变大。</text>
+  <text x="58" y="530" font-size="11.5" fill="#334155">但若攻击者按 Δz = H·Δx 改，这份成分恰好落在 H 的列空间里 —— 残差里一点都留不下。</text>
+  <text x="58" y="550" font-size="11.5" font-weight="600" fill="#b91c1c">这就是 FDI 的核心，也是"残差法"在完全信息攻击下必然失效的原因。</text>
+</svg>

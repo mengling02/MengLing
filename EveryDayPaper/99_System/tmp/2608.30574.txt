@@ -1,0 +1,1594 @@
+1
+Exposing the Invisible: Detecting Stealthy
+Parameter-Based Cyber-Attacks on Inverter
+Synchronization Loops
+Zaint A. Alexakis, IEEE Member, Michal M. Drewniak, and Charalambos Konstantinou, IEEE Senior Member
+Abstract—The increasing integration of Internet-of-Things
+(IoT) technologies for monitoring and control of inverter-based
+resources (IBRs) has expanded the attack surface, enabling
+stealthy manipulation of controller parameters through vulner-
+able supervisory control interfaces. Phase-locked loops (PLLs)
+emerge as prime targets, as they interact with all control loops
+and critically influence the dynamic response of grid-following
+(GFL) converters. This paper analyzes the underlying threat
+model to elucidate the mechanisms enabling such stealthy be-
+havior and conducts a thorough stability and transient response
+analysis to characterize how PLL tampering can degrade system
+performance without necessarily destabilizing the system. The
+results reveal critical interactions among frequency estimation,
+control, and synchronization that can significantly reduce stabil-
+ity margins. To counter the stealthy nature of these attacks, a
+modified PLL is proposed that exposes gain variations through
+shifts in its equilibrium points while preserving conventional PLL
+performance. Experimental results validate the effectiveness of
+the proposed approach in detecting PLL cyber-attacks.
+Index Terms—Phase-locked loop, cyber-attack, attack detec-
+tion, stability analysis, synchronization.
+I. INTRODUCTION
+The power grid is transitioning from centralized, generator-
+based
+operation
+to
+decentralized
+coordination
+of
+grid-
+connected distributed generation, including inverter-based-
+resources (IBRs) [1]. While this shift supports decarboniza-
+tion, it introduces challenges such as reduced system inertia
+and damping, formation of weak or isolated networks prone
+to voltage disturbances and instability, and increased cyber-
+security risks [2]–[4]. Poorly integrated Internet-of-Things
+(IoT) technologies in power plant coordination have expanded
+attack surfaces, allowing adversaries to exploit vulnerabilities
+in critical communication channels and potentially disrupt grid
+operations [5]–[7].
+Supervisory control and data acquisition (SCADA)-based
+attacks are a credible threat, as evidenced by previous inci-
+dents. In particular, the cyber-attack reported in [8] demon-
+strates how adversaries can disrupt communication between
+utilities and IBRs in California and Wyoming, exposing critical
+vulnerabilities in operational infrastructure. Other prominent
+cases include the 2019 disruption of communications with
+multiple renewable installations in Utah, and recent attacks
+on Poland’s electricity grid [9], in which adversaries bypassed
+local firewalls and erased supervisory device firmware without
+Z. A. Alexakis, M. M. Drewniak, and C. Konstantinou are with the
+Computer, Electrical & Mathematical Sciences and Engineering (CEMSE)
+Division, King Abdullah University of Science and Technology (KAUST),
+Thuwal, 23955, Saudi Arabia. C. Konstantinou is also with the Energy
+Institute, The University of Texas at Austin, Austin, Texas, 78712, United
+States. M. M. Drewniak is also with the Department of Power Electronics &
+Energy Control Systems, AGH University of Krakow, Krakow 30-059, Poland.
+forensic traces. Beyond disrupting communication and super-
+visory functions, vulnerable SCADA interfaces can also be
+exploited to target grid stability directly. This is exemplified
+in [10], [11], where the control parameters of flexible AC
+transmission system (FACTS) devices are manipulated to alter
+the reactance of multiple transmission lines, compromising the
+grid’s frequency stability.
+In this context, PLLs emerge as particularly vulnerable
+targets, as they strongly influence IBR transient behavior
+through their interactions with multiple control loops [12],
+[13]. This vulnerability is further exacerbated by revised grid
+codes such as IEEE 1547 [14], which now mandate that GFL
+converters, previously focused on market participation and
+maximum power point tracking, implement primary control
+loops to support grid frequency and voltage, similar to grid-
+forming (GFM) IBRs [15]. Meeting these requirements relies
+on accurate frequency estimation, conventionally derived from
+PLLs [16]. As a result, PLLs are no longer used strictly for
+synchronization but also support controllers spanning longer
+time-scales, such as droop control, thereby dictating the overall
+small-signal profile of IBRs. This strong coupling between
+PLLs and the various control layers may be exploited by
+adversaries seeking to harm this critical infrastructure: as
+illustrated in [17], attackers exploiting vulnerabilities in IBR
+communication channels can gain access to supervisory inter-
+faces and manipulate critical PLL gains to degrade system
+operation, destabilize the network, or unnecessarily trigger
+protection mechanisms.
+The severity of such attacks lies in their stealthy nature.
+As shown in [17], if PLL tampering occurs at steady state,
+the system may appear unaffected, with the consequences
+manifesting only during subsequent disturbances. However,
+that work does not analyze the underlying mechanisms that
+render these attacks stealthy and evasive, and thus difficult to
+detect, which warrant further investigation. The same threat
+model is examined in [18], where adversaries nullify the
+integral gain of the synchronization PLL to induce power devi-
+ations, exploiting the ability of the resulting proportional-only
+PLL to track grid frequency while introducing a steady-state
+phase error that produces power regulation errors in current-
+controlled GFL IBRs. However, this attack is conspicuous
+rather than stealthy, as the loss of PLL phase lock leaves an
+immediate detection trace and is readily flagged by protection
+mechanisms. Furthermore, power shifting through this threat
+model can only be realized in the absence of dedicated primary
+controllers, a highly unlikely scenario given the mandate of
+IEEE 1547 [14]. To mitigate this vulnerability, the authors
+propose an alternative synchronization scheme that neutralizes
+arXiv:2608.30574v1  [eess.SY]  31 Aug 2026
+the attack at the expense of degraded system performance. The
+authors further introduce an attack detection method; however,
+it is restricted to the case in which the integral gain is nullified
+and fails to detect any other PLL gain tampering pattern.
+Similarly, [19] presents a PLL-less current control strategy
+that addresses the considered threat model but does not surpass
+the performance of conventional PLL-based implementations.
+These limitations establish a clear need for a systematic
+framework capable of rigorously analyzing this attack vector,
+quantifying its impact on system performance, and exposing
+otherwise stealthy intrusions, while providing non-disruptive
+protection for vulnerable power electronic interfaces.
+The stakes of this gap are high: without an explicit char-
+acterization of how PLL tampering propagates through the
+control layers, operators cannot gauge an attack’s severity or
+the conditions under which its consequences surface, a press-
+ing concern for grid-supporting GFL IBRs that rely on PLLs
+for primary-control implementation. In [17], [18], simulation-
+based analyses of grid-supporting IBRs highlight the impact of
+estimator dynamics on system performance and fault recovery
+time. However, an explicit small-signal analysis incorporating
+these supplementary loops is still lacking, particularly under
+weak-grid conditions where the control loops interact with the
+PLL used for synchronization. These analyses are essential
+to fully understand these interactions and to ensure that IBR
+infrastructures remain stable and resilient to poor transients
+and potential instabilities.
+This paper pursues two primary objectives. First, it formu-
+lates and rigorously analyzes a mathematical threat model for
+stealthy PLL tampering, explicitly capturing the mechanism by
+which the attack evades detection and quantifying its impact
+on IBR dynamics through comprehensive small- and large-
+signal analyses. Prior works study such attacks, but do not
+analyze the mechanism underlying their stealthiness. Second,
+an effective detection framework is developed to safeguard
+critical IBR infrastructure without compromising nominal con-
+trol performance, making it straightforward to integrate into
+existing GFL plants. Specifically, this work proposes a novel
+robust synchronization unit (RSU)-based PLL architecture
+that renders both proportional and integral gain manipula-
+tions observable through shifts in equilibrium points while
+preserving the small-signal behavior of conventional PLLs.
+This overcomes the limitations of existing approaches, which
+either detect only the special case of integral-gain nullification,
+degrade performance, or eliminate the PLL altogether, as
+summarized in the comparison in Table I. A further strength of
+the framework is its generality, as the same equilibrium-based
+principle can be extended naturally to a broad class of IBR
+control architectures, exposing parameter changes wherever
+they occur. Its effectiveness is demonstrated through extensive
+simulation studies and validated via controller hardware-in-
+the-loop (CHIL) experiments.
+The remainder of this article is organized as follows.
+Section II presents a detailed modeling framework for IBR-
+dominated power systems, while Section III introduces a grid-
+code-compliant GFL control framework based on dynamic
+frequency estimation. The threat model is formulated in Sec-
+tion IV, and Section V provides both small- and large-signal
+TABLE I: Comparison with the existing literature.
+Feature
+[17] [18] [19] This work
+Threat model and stealthiness analysis
+◦
+◦
+◦
+✓
+Small-/large-signal attack impact assessment
+◦
+✗
+◦
+✓
+PLL gain tampering detection
+✗
+◦
+◦
+✓
+Nominal PLL performance preserved
+✓
+✗
+✗
+✓
+Industrial/GFL controller compatibility
+✓
+✗
+✗
+✓
+✓fully addressed
+◦partially addressed
+✗not addressed
+analyses to examine the interactions among the frequency
+estimator, synchronization and control layers, and other grid-
+connected resources. The proposed detection scheme is pre-
+sented in Section VI, and experimental results validating its
+effectiveness and applicability are reported in Section VII.
+Finally, Section VIII concludes the paper.
+II. SYSTEM MODELING
+A model-based approach is required to comprehensively
+analyze PLL-targeting cyber-attacks, as adversarial gain tam-
+pering ultimately seeks to alter the small-signal characteristics
+of IBRs. Such analyses enable the approximate quantifica-
+tion of the impact of these cyber-attacks and facilitate the
+formulation of the most detrimental attack models, which
+inherently supports the design of effective detection schemes.
+Accordingly, this section presents a detailed model of IBR-
+dominated networks, comprising a diverse mixture of GFL
+and GFM resources and their associated control schemes.
+A. Power Converters
+Power converters are commonly represented using equiva-
+lent averaged models, in which they are formulated as ideal
+voltage sources connected to the point of common coupling
+(PCC) through an RL filter and a shunt capacitor. This system
+can be expressed using the Park transformation, which maps
+system states into a stationary two-axis (dq) reference frame,
+thereby facilitating analysis and control design. The current
+dynamics in the dq domain are given by [20]:
+liı′Li
+d,i = −riıLi
+d,i + ωp,iliıLi
+q,i + vLi
+f,d,i −vLi
+c,d,i,
+(1)
+liı′Li
+q,i = −riıLi
+q,i −ωp,iliıLi
+d,i + vLi
+f,q,i −vLi
+c,q,i,
+(2)
+where i ∈C, with C being the set of power converters. The
+parameters ri, li denote the ith converter parasitic resistance
+and inductance of the filter, ωp,i is the IBR frequency, derived
+from PLLs for GFL converters and from the swing equation
+for GFM ones, ıLi
+d,i, ıLi
+q,i are the converter output currents, vLi
+f,d,i,
+vLi
+f,q,i and vLi
+c,d,i, vLi
+c,q,i are the dq- frame inverter and capacitor
+voltages. The superscript (·)Li denotes quantities expressed in
+the ith local reference frame. The capacitor voltages of the
+power converters’ filters are given by:
+Civ
+′Li
+c,d,i=−vLi
+c,d,i/Ri+ωp,iCivLi
+c,q,i+
+X
+i∈Ωj
+ıLi
+in,d,i−
+X
+i∈Fj
+ıLi
+out,d,i, (3)
+Civ
+′Li
+c,q,i=−vLi
+c,q,i/Ri−ωp,iCivLi
+c,d,i+
+X
+i∈Ωj
+ıLi
+in,q,i−
+X
+i∈Fj
+ıLi
+out,q,i, (4)
+with Ci, Ri denoting the capacitance and resistive load, and
+vLi
+c,d,i, vLi
+c,q,i the capacitor dq-voltages. The summed terms cor-
+respond to the line currents entering and leaving the capacitor.
+Specifically, Ωj and Fj denote, respectively, the sets of indices
+associated with currents entering and leaving the capacitor.
+2
+The voltage and current equations are defined in the local
+dq frame associated with each power converter. Specifically,
+each subsystem operates in its own dq frame, which enables
+the implementation of its controller and requires all system
+states to be expressed in the corresponding local coordinates.
+B. Line, Load and Network Dynamics
+The power network is modeled using strictly resistive-
+inductive lines and complex loads. Contrary to [17], this paper
+considers the full nonlinear models of both lines and loads in
+order to accurately capture their interactions and their impact
+on the stability of IBRs. The dynamics of the transmission
+lines are described by:
+ll,i ı′G
+l,d,i = −rl,iıG
+l,d,i + ωgll,iıG
+l,q,i + vG
+s,d,i −vG
+e,d,i,
+(5)
+ll,i ı′G
+l,q,i = −rl,iıG
+l,q,i −ωgll,iıG
+l,d,i + vG
+s,q,i −vG
+e,q,i,
+(6)
+where i ∈L, with L denoting the set of transmission lines.
+Here, ıG
+l,d,i and ıG
+l,q,i denote the line currents in the dq reference
+frame; rl,i and ll,i are the line resistance and inductance,
+respectively; and vG
+s,d,i, vG
+s,q,i and vG
+e,d,i, vG
+e,q,i represent the
+sending- and receiving-end voltages in the dq frame. The
+superscript (·)G denotes quantities expressed in the global
+reference frame. The global reference frame is a common
+rotating frame with angular frequency ωg and is used to
+mathematically interconnect the local reference frames of the
+converters. At steady state, it represents the grid frequency.
+Inductive loads can be modeled in the same manner by
+assuming that the receiving-end voltage of the corresponding
+line is connected to ground. Converter-free load buses can also
+be modeled using (3)-(4); however, in this case, all states must
+be formulated in the global reference frame.
+C. Generalized Power System Model
+The distinction between local and global reference frames
+enables the modeling of synchronization dynamics for indi-
+vidual subsystems, including GFL and GFM IBRs. However,
+it complicates stability analysis, as transitioning between ref-
+erence frames requires coordinate transformations. Suppose
+that xLi = [xLi
+d , xLi
+q ] and xG = [xG
+d , xG
+q ] represent a power-
+system state expressed in the local and global reference frames,
+respectively. These states can be written in phasor form as:
+XG =
+ xG
+d + jxG
+q
+
+ej
+R
+ωg dt,
+(7)
+XLi =
+
+xLi
+d + jxLi
+q
+
+ej
+R
+ωp,i dt.
+(8)
+This representation is consistent with the αβ transformation;
+therefore, a rotation matrix, R [21], can be used to transition
+between reference frames. The same concept applies to the
+phasor representation, yielding:
+XG = XLiej
+R
+(ωp,i−ωg)dt,
+(9)
+or, equivalently:
+XG =
+
+xLi
+d + jxLi
+q
+
+e−j∆θ,
+(10)
+where ∆θ denotes the phase difference between the local and
+global frames and satisfies:
+∆˙θi = ωg −ωp,i.
+(11)
+Fig. 1: Frequency-support curve.
+Similarly, the transformation from the global reference frame
+to the local reference frame is given by:
+XLi =
+ xG
+d + jxG
+q
+
+ej∆θ.
+(12)
+At steady state, ωg = ωs
+p,i must hold for all i ∈C, where
+the superscript (·)s denotes steady-state, to ensure that the
+dq quantities expressed in the global reference frame remain
+constant. This requirement facilitates stability analysis, as the
+corresponding equilibrium point is a constant vector, provided
+that the power system model is stable. It is emphasized that
+even if the reference frequency of the global frame differs from
+that of the local frames at steady state, the local dq frames
+constructed by the power converters will still reach consensus
+on a common system frequency as a result of primary control.
+In this study, the global reference frequency ωg is derived from
+the local reference frame of one of the power converters.
+III. ANCILLARY SERVICES-ORIENTED IBR CONTROLLERS
+Naturally, GFM converters provide ancillary services such
+as frequency and voltage support. However, GFL IBRs mainly
+focus on maximum power injection. On the other hand,
+conventional GFL schemes are not designed explicitly for real-
+time frequency support and can occasionally weaken the grid
+instead of strengthening it. To address this concern, revised
+grid regulations, [14], require GFL converters to strictly follow
+the droop-like characteristic illustrated in Fig. 1, where the
+power output of the converter is adjusted according to the
+system’s frequency. These curves exhibit two key features:
+the deadband and the slope, the latter being equivalent to
+the active-power droop coefficient. Similarly, an analogous
+droop characteristic is specified for the reactive power control
+loop with respect to the PCC voltage; however, it is omitted
+here to avoid redundancy. For clarity, the converter index i
+is suppresed hereafter, as the following analysis focuses on a
+single representative GFL converter, with the results applying
+identically to every i ∈C. The mathematical representation of
+the grid-support controller is given below:
+Pr = Ps + f (mP (ωn −ωg)) ,
+(13)
+Qr = Qs + f (mQ (|v|n −|v|pcc)) ,
+(14)
+where ωg and ωn correspond to the measured and nominal
+grid frequencies, vn and vpcc the nominal and measured PCC
+voltage. Finally, mP , mQ correspond to the active and reactive
+power droop gains, while f denotes the deadband function:
+f(x) =
+
+
+
+
+
+x −δ,
+if x > δ,
+0,
+if |x| ≤δ,
+x + δ,
+if x < −δ,
+(15)
+3
+Fig. 2: Grid-supporting GFL control scheme.
+where δ represents the deadband threshold. According to
+the ENTSO-E Frequency Sensitive Mode grid code [22], the
+maximum value for δ is 0.5 Hz. For δ = 0, the deadband is
+always inactive.
+The reference power is then usually channeled through a
+rate limiter (RL) to ensure that it adheres to physical plant
+restrictions and grid-codes:
+˙Psr = ˙Pmsat (a (Pr −Psr)) ,
+(16)
+where ’sat’ denotes the saturation function, ˙Pm the maximum
+allowed derivative limit and a is a tuning parameter. The
+overall control diagram is illustrated in Fig. 2.
+The controller defined by (13) and (16) requires two inputs:
+the reference power Ps and an estimate of the grid frequency.
+The method used to obtain ωg significantly affects the con-
+verter’s response during frequency support. GFL converters
+implement PLLs for both synchronization and frequency es-
+timation for grid-monitoring purposes. However, PLLs are
+tuned to act instantaneously, enabling the implementation of
+upper control layers. Consequently, the slightest grid-side
+disturbance significantly excites the PLL dynamics and its
+output frequency, which can drive an excessive reaction of
+the ancillary-service power controller despite the implemented
+deadband safeguard. This can be addressed by separating the
+synchronization and frequency-estimation functions into two
+distinct PLLs that are tuned individually, so that a slower
+frequency-estimation PLL can be assigned independently of
+the synchronization dynamics. The same flexibility applies
+in the opposite case: under weak-grid conditions, where the
+synchronization PLL must be slowed to preserve stability,
+the separated structure still permits a responsive frequency-
+estimation PLL, decoupling the frequency-support response
+from the synchronization bandwidth.
+This representation is made without loss of generality,
+since it is structurally equivalent to a single synchronization
+PLL augmented with additional frequency-estimation loops.
+Expressing the scheme as two PLLs additionally allows each
+function, synchronization and frequency estimation, to be
+described and tuned in common PLL terms, such as bandwidth
+and damping ratio, so that the two loops are decoupled
+and the transient behavior and stability margins of each are
+inferred directly from well-established PLL design principles,
+as substantiated by the formal stability analysis in Section V.
+Specifically, the synchronization layer implements the
+synchronously rotating frame (SRF) PLL to track the phase,
+frequency and voltage magnitude of the grid:
+ωp = ωn + kp,svL
+c,q + z,
+(17)
+˙z = ki,svL
+c,q,
+(18)
+with kp,s and ki,s being the proportional and integral gains
+of the PLL, and θp =
+R
+ωp dt is the estimated input voltage
+phase. Since the analysis applies identically to both PLLs, the
+subscript s is omitted hereafter. The local-frame representation
+of the q-axis converter output voltage, vL
+c,q, can then be
+formulated using the transformation (12):
+vL
+c,d + jvL
+c,q =
+ vG
+c,d + jvG
+c,q
+
+ej∆θ,
+(19)
+where the auxiliary state ∆θ, representing the phase error
+between the global and local frames, is given by:
+∆˙θ = ωg −ωp.
+(20)
+Equating the real and imaginary parts yields:
+vL
+c,q = vG
+c,q cos ∆θ + vG
+c,d sin ∆θ.
+(21)
+The outer-loop controller employs the same PLL formulation
+to estimate the grid frequency:
+ωo = ωn + kp,ovLo
+c,q + zo,
+(22)
+˙zo = ki,ovLo
+c,q,
+(23)
+where kp,o and ki,o denote the proportional and integral
+gains of the frequency estimator, respectively. Here, ωo is the
+estimated frequency. The superscript (·)Lo indicates quantities
+expressed in the reference frame of the outer-loop controller.
+Following the same procedure used for the synchronization
+PLL, the outer-loop representation of the PCC voltage is
+obtained by transforming it from the local PLL reference frame
+to the outer-loop reference frame:
+vLo
+c,d + jvLo
+c,q =
+ vL
+c,d + jvL
+c,q
+
+ej∆θo.
+(24)
+Here, ∆θo, similarly to ∆θ, is an auxiliary variable that
+represents the phase difference between the local reference
+frame and the outer-loop reference frame and is defined by:
+∆˙θo = ωp −ωo.
+(25)
+Incorporating the ancillary services controller fundamentally
+alters the core operating principles of GFL converters. In this
+context, a critical role is played by the frequency estimator, and
+its interaction with the synchronization PLL, as well as with
+other grid components such as GFM converters, RLs and the
+deadband threshold. These interdependencies may be exploited
+by adversaries seeking to degrade or potentially destabilize
+power networks by manipulating PLL gains that are accessible
+through supervisory control interfaces. To fully assess the
+potential impact of such malicious actions, a comprehensive
+threat model must be formulated to characterize both the
+nature and the consequences of the cyber-attack.
+IV. ATTACK MODEL FORMULATION
+Building on the vulnerability exposed in the previous
+section, this section formalizes the attacker’s objective and
+the notion of stealthiness underlying PLL gain-tampering
+attacks. Even when the frequency-estimation and synchroniza-
+tion PLLs are properly tuned offline, both remain exposed
+to deliberate manipulation by adversaries who compromise
+4
+supervisory control interfaces [6], overwriting the proportional
+and integral gains of either loop. These interfaces, typically
+SCADAs and PLCs, can reportedly be breached by exploit-
+ing software vulnerabilities to obtain write access, whether
+through low-privilege accounts or remotely without prior sys-
+tem access, and to overwrite critical control parameters [7],
+[23]. The severity of this attack lies in its stealthy nature:
+altering the gains once the system has reached steady state
+produces no observable anomaly in the nominal response of
+the PLLs, and the impact surfaces only when a subsequent
+disturbance excites the modified dynamics. The attack is
+practically manifested as a one-time parameter overwrite that
+requires no real-time observation by the adversary, a threat
+model also considered in [17]–[19], and examined next to
+identify the factors that allow it to remain undetected.
+Before proceeding with the analysis, the PLL gains prior to
+the attack are denoted as kn
+p and kn
+i , and the gains after the
+attack as ka
+p and ka
+i . The same analysis applies to both the
+frequency estimator and the synchronization PLL; hence, the
+gain subscripts are omitted, and the analysis is conducted for a
+generic PLL model. Accordingly, the objective of the attacker
+can be summarized as follows:
+kn
+p →ka
+p,
+kn
+i →ka
+i .
+(26)
+To analyze how an attack is perceived from the operator’s
+perspective, the closed-loop PLL dynamics are reformulated
+by incorporating the coordinate transformation in (20) and
+assuming interconnection to an arbitrary grid voltage. Suppose
+that the operator has access to vLo
+c,q and the frequency estimate
+provided by the PLL. For ˆV = 1 pu, the q-axis voltage in the
+local frame is given by vL
+c,q = ˆV sin ∆θ, yielding:
+∆˙θ = ωg −ωn −kn
+p sin ∆θ −z,
+(27)
+˙z = kn
+i sin ∆θ.
+(28)
+The equilibrium points are yielded from:
+∆θs = 0,
+zs = ωg −ωn.
+(29)
+An attack is stealthy if operators or monitoring systems that
+check the states against their expected steady-state values
+cannot detect it. Whether the adopted threat model is stealthy
+thus depends on its effect on the equilibrium. Let ηs =
+(∆θs, zs)n −(∆θs, zs)a be the difference between the pre-
+and post-attack equilibria, where (∆θs, zs)n and (∆θs, zs)a
+denote the equilibrium pairs before and after the attack, as
+monitored by the operator. From (29), tampering that preserves
+integral action leaves the equilibrium unchanged, so ηs = 0, in
+agreement with the observations in [17], [18]. Consequently,
+if the system is at steady state when (26) occurs, it remains at
+equilibrium, unperturbed and without any transient behavior,
+despite the changed gains.
+A straightforward and conspicuous strategy that an adver-
+sary may adopt is to completely nullify the integral gain
+(ka
+i = 0), as illustrated in [18]. As shown in [24], the SRF
+PLL can still track the grid frequency with a proportional-only
+controller, that is, with the integral gain set to zero; however,
+exact phase tracking cannot be achieved, resulting in a steady-
+state error in power regulation when direct power control is
+implemented through current regulators, as in [19]. Under this
+condition, an attacker can actively manipulate the active power
+output of the plant [19]. Here, since ηs = [(ωg −ωn)/ka
+p, 0]̸ =
+[0, 0], the attack is immediately detected: the induced phase er-
+ror prevents the exact phase lock that synchronization requires,
+which is reflected in critical controller states such as the dq
+voltages and triggers converter disconnection due to loss of
+synchronization, exposing the tampering. The more capable
+threat model of [17], however, which considers all possible
+combinations of PLL gain manipulation that preserve integral
+action, always yields ηs = 0, leaving no observable trace
+for operators to detect the attack, which makes it particularly
+dangerous and is therefore the threat model considered in this
+work. Since ηs captures precisely any shift in the monitored
+steady-state values, it provides an exact mathematical charac-
+terization of the stealth notion introduced above.
+Remark 1. A PLL gain tampering cyber-attack remains
+stealthy if and only if ηs = 0.
+Consequently, capturing any tampering of the PLL gains
+requires ηs̸ = 0, a condition that, for the threat model of
+(26), cannot be satisfied by the conventional PLL structure.
+This becomes clearer through (29): owing to the exact phase
+tracking enabled by the integral term, the equilibrium point
+is always the same for a given grid frequency. This motivates
+a systematic analysis of the impact of both the frequency-
+estimation and synchronization PLL parameters on the small-
+and large-signal behavior of the IBR, in order to anticipate
+gain-tampering strategies that degrade system performance and
+to design a detection mechanism capable of identifying such
+attacks.
+V. PLL IMPACT ON STABILITY AND TRANSIENT
+RESPONSE
+As evident from (13), the frequency estimator and its
+interaction with nonlinear elements, such as RLs, critically
+influence the dynamic response and small-signal behavior of
+GFL converters. To capture these effects, this section conducts
+an explicit small-signal stability analysis, complemented by a
+comprehensive simulation study that examines the relationship
+between the quality of grid-supporting services provided by
+the IBR and the frequency estimator.
+A. Small-Signal Analysis
+To analyze the interaction between the frequency-supporting
+GFL converter and the grid, a simplified single-bus model is
+considered, in which a GFM converter is connected to both
+Fig. 3: GFL converter connected to a dynamic grid.
+5
+(a) Synchronization PLL bandwidth: 40 Hz
+(b) Synchronization PLL bandwidth: 1 Hz
+Fig. 4: Modal analysis for a GFL converter connected to a GFM converter through a 2.5 mH line, for different PLL bandwidths.
+a GFL converter and a load at the same bus. The simplified
+swing equation can be expressed as:
+J∆˙ω = −D∆ω + PGF M + PGF L −PL,
+(30)
+where ∆ω = ω −ωn is the frequency deviation of the GFM
+converter, and PGF M, PGF L, and PL denote the power outputs
+of the GFM, GFL converters, and the load, respectively. The
+parameter D is the droop coefficient of the GFM IBR and J
+its virtual inertia.
+Although modern grid codes require GFL converters to
+follow the reference structure in (16), here (13) is used for
+analytical clarity. Assuming that the PLL input voltage is 1 pu,
+the q-axis voltage used by the PLL outer loop in the local
+reference frame becomes:
+vLo
+q
+= sin∆ϕ.
+(31)
+where ∆ϕ is given by:
+∆˙ϕ = ω −ωo,
+(32)
+the PLL dynamics can be written as:
+∆˙ϕ = ∆ω −kp,o sin ∆ϕ −zo,
+(33)
+˙zo = ki,o sin ∆ϕ.
+(34)
+where the superscript (·)n, denoting pre-attack quantities, is
+omitted for clarity.
+Substituting these dynamics into the swing equation and
+linearizing the trigonometric terms around the equilibrium
+∆ϕ∗= 0, the closed-loop linearized system is:
+J∆˙˜ω=−D∆˜ω+PGF M +Ps−PL−mP (kp,o∆˜ϕ + ki,o˜zo), (35)
+∆˙˜ϕ = ∆˜ω −kp,o∆˜ϕ −ki,o˜zo,
+(36)
+˙˜zo = ∆˜ϕ.
+(37)
+The state matrix of this system is:
+
+
+−D/J
+−mP kp,o/J
+−mP ki,o/J
+1
+−kp,o
+−ki,o
+0
+1
+0
+
+.
+Applying the Routh-Hurwitz criterion to obtain the condi-
+tion for the eigenvalues to have strictly negative real parts
+yields the stability condition:
+mP ki,o
+J
+−kp,oki,o<k2
+p,oD
+J
++mP k2
+p,o
+J
++kp,o
+D
+J
+2
++DmP kp,o
+J2
+. (38)
+This inequality is not satisfied by every combination of PLL
+or network parameter values, meaning the system can become
+unstable for poorly chosen parameters. Notably, when kp,o =
+0, a conventional PLL would be marginally stable, yet under
+this simplified model the overall system becomes unstable. If
+instead the GFL converter is connected to an infinite bus, J ≈
+∞, the stability condition reduces to −kp,oki,o < 0, which
+is always satisfied. In this case, the one-bus model explicitly
+reveals that the two subsystems decouple, guaranteeing system
+stability independently of their interaction. To obtain a more
+interpretable stability condition, (38) is rewritten as:
+mP ki,o
+J
+<kp,o
+ 
+ki,o+ kp,oD
+J
++ mP kp,o
+J
++
+D
+J
+2
++ DmP
+J2
+!
+. (39)
+This inequality indicates that when the PLL is extremely
+under-damped, the combined system may readily become
+unstable. The simplified GFM model is stable in stand-alone
+operation; therefore, any potential instability arises solely
+from the GFL converter and its outer-loop PLL. A similar
+observation was reported in [25], where interactions between
+GFM and GFL converters at low bandwidths were shown
+to induce instability. This instability is strongly influenced
+by the frequency estimator dynamics and may be exploited
+by adversaries to degrade system performance or, in extreme
+cases, destabilize the power system.
+Although the previous results indicate strong coupling
+among the IBRs, the reduced-order model cannot fully capture
+their interactions, owing to simplifying assumptions such as
+neglecting essential IBR dynamics, including the current and
+power control loops of the primary (voltage-frequency) control
+shown in Fig. 2, and, most importantly, the impact of the
+synchronization PLL. To address this limitation, an eigenvalue
+analysis is performed on the testbench shown in Fig. 3 under
+both strong and weak grid conditions, using the complete
+nonlinear closed-loop model established in Sections II and III,
+incorporating the network dynamics and the current and power
+control loops. The eigenvalues are obtained directly from the
+Jacobian of this model, evaluated at the system’s equilibrium
+point [13]. The GFL converter is rated at 0.1 MVA, whereas
+the GFM IBR has a rating of 1 MVA, with all droop coeffi-
+cients for both converters set to 1%.
+First, a weak-grid is considered with a 2.9 SCR index.
+The synchronization PLL bandwidth is set to 40 Hz, and the
+eigenvalues of the system are computed as the bandwidth of
+the frequency estimator is increased from 0 to 10 Hz. The
+damping ratio ζ, is fixed at 1/
+√
+2. The results are shown
+in Fig. 4a, where the arrows indicate the migration of the
+6
+Fig. 5: Dominant eigenvalues for a reduced controllers’ bandwidth.
+eigenvalues as the PLL bandwidth increases. It can be ob-
+served that the system is unstable for lower bandwidth values,
+primarily due to weak-grid conditions associated with the low
+SCR. As the estimator bandwidth increases, the frequency-
+support controller stabilizes the system. This stabilizing effect
+is attributed to the grid-forming characteristics of the controller
+and its contribution to regulating the PCC frequency and
+voltage. However, further increasing the bandwidth eventually
+destabilizes the system, as the power and current controllers
+as well as the PLL are unable to follow in time the output
+of the ancillary services controller. To further illustrate this
+phenomenon, the controller bandwidths are reduced by a factor
+of three, and the same analysis is repeated. The results, shown
+in Fig. 5, indicate that without the frequency-support mecha-
+nism the system remains unstable; however, as the frequency
+estimator bandwidth increases, stability is achieved at a lower
+frequency compared to Fig. 4a. Moreover, the system remains
+stable over a wider range of estimator bandwidths. Overall,
+excessively slow tuning of the frequency estimator limits the
+frequency-support capability of the IBRs and can lead to
+instability under weak-grid conditions, while overly aggressive
+tuning may produce similar destabilizing effects.
+Next, the synchronization PLL bandwidth is reduced to
+1 Hz, and the experiment is repeated. The results in Fig. 4b
+demonstrate that this adjustment mitigates both small-signal
+instability and low-frequency oscillatory modes. In contrast
+to using the synchronization PLL for frequency estimation,
+increasing the bandwidth of a dedicated PLL now enhances
+the fault-ride-through capability of the IBR, as the dominant
+eigenvalues shift further into the left-half plane. However,
+further increasing the PLL bandwidth again leads to instability.
+Finally, the transmission line is removed and the GFM con-
+verter is replaced by an infinite bus. The analysis is repeated
+for both PLL bandwidth configurations, and the dominant
+eigenvalues are shown in Fig. 6. As expected, the dominant
+eigenvalues coincide in both cases, and the system remains
+stable for all PLL bandwidths.
+These results underscore the critical role of frequency
+support and estimator dynamics in system stability. Improper
+gain tuning can degrade performance or even induce instabil-
+ity, providing a potential avenue for adversaries to stealthily
+compromise the small-signal behavior of IBRs and the broader
+power system.
+B. Large-Signal Analysis
+This section investigates the impact of the frequency es-
+timator dynamics on the performance of the grid-supporting
+Fig. 6: Effect of an infinite bus connection on dominant eigenvalues.
+IBR during large-signal disturbances, such as load changes.
+To conduct a more holistic analysis, a grid with four IBRs is
+considered, as shown in Fig. 7.
+Fig. 7: Simulation benchmark.
+The performance of the frequency-support mechanism is
+evaluated by measuring the duration of a voltage sag induced
+by a significant load change at bus 3 (+0.15 MW), where
+the under-study grid-supporting IBR is located. Specifically,
+the voltage-sag duration is measured for different deadband
+settings, RL derivative limits, and frequency-estimator band-
+widths. The results are illustrated in Fig. 8a.
+Each primary controller configuration yields a distinct dy-
+namic response, which may either improve or degrade the
+voltage recovery time. The shortest recovery times are ob-
+tained when no deadband is applied, allowing the controller to
+respond immediately to the disturbance. Introducing a RL with
+tight power-derivative constraints significantly improves the
+response for low PLL bandwidths by suppressing excessively
+aggressive control actions. For higher bandwidths, the recovery
+time remains nearly constant, as the high-derivative response
+of the primary controller is constrained by the RL. Once the
+RL becomes inactive, the frequency estimator has already
+converged to the grid frequency and therefore has no further
+impact on the short-term system dynamics. Increasing the
+derivative limits results in similar behavior; however, the
+saturation of the recovery time occurs at a substantially shorter
+duration.
+Incorporating a deadband in the controller limits preemptive
+control actions and reduces the participation of the IBR in
+grid-support services. As observed in Fig. 8a, the converter
+does not contribute to voltage recovery when the estimator
+bandwidth is below 4 Hz and the deadband is set to ±0.5 Hz.
+For bandwidths between 4 and 9 Hz, the controller operates
+counter-productively and increases the recovery time, whereas
+for higher bandwidths it improves the response. Increasing
+7
+(a) Inductive network.
+(b) Resistive network.
+Fig. 8: Voltage sag duration for different controller and PLL parameters.
+the deadband to ±1 Hz leads to qualitatively similar but
+more pronounced effects. The combined use of RLs and
+deadbands produces an interaction in which the controller
+degrades performance at low estimator bandwidths, improves
+recovery at intermediate bandwidths, and ultimately leads to
+saturation of the recovery time at high bandwidths due to the
+restrictive action of the RL.
+The impact of the frequency estimator is more pronounced
+in resistive networks. To further examine this effect, the
+experiment is repeated for a predominantly resistive system
+(X/R = 0.6), where both lines and loads exhibit mainly
+resistive characteristics. As shown in Fig. 8b, the frequency
+estimator plays a critical role in disturbance rejection, with
+recovery times ranging from 0.1 ms to 300 ms. However,
+its interaction with nonlinear protection elements may either
+improve or degrade recovery performance. This behavior is
+most evident when the grid-support controller employs RLs:
+lower bandwidths reduce recovery time, whereas, in contrast
+to inductive networks, increasing the bandwidth results in a
+gradual increase in recovery time. These results highlight the
+influence of the frequency estimator and its dynamic response
+on fast frequency support services. While the combination of
+conventional primary control with nonlinear and discontinu-
+ous elements can improve system performance during distur-
+bances, improper tuning may instead degrade the response.
+More importantly, deliberate or malicious manipulation of
+controller parameters can render the frequency-support mech-
+anism counterproductive and may lead to instability of the
+IBR as well as adverse interactions with surrounding loads
+and resources.
+VI. RSU-BASED DETECTION OF PLL GAIN TAMPERING
+A key conclusion derived from the threat-model impact
+assessment is that, to meaningfully affect the small-signal
+behavior of the plant, an adversary must significantly alter
+the proportional gain, the integral gain, or both, since properly
+tuned PLLs yield a system that is neither marginally stable nor
+underdamped. Building on this insight, this section presents an
+effective detection mechanism based on the RSU framework
+introduced in [24], capable of capturing stealthy PLL gain ma-
+nipulations without compromising system performance. The
+proposed detection scheme relies on observing the internal
+states of an alternative PLL implementation that behaves
+identically to the conventional SRF PLL. The proposed PLL
+is described by:
+˙θR = ωR = ωN + kiz,
+(40)
+˙z = arctan vR
+c,q −kpz,
+(41)
+with the Park transformation phase angle for the local control
+frame given by
+θP = θR + kpz.
+(42)
+Here ωN is a tunable constant, and the superscript (·)R denotes
+quantities expressed in the RSU internal reference frame.
+Additionally, ωR and θR are RSU related internal states. An
+explicit illustration of the proposed module is presented in
+Fig. 9. Considering the coordinate transformation in (20), the
+pre-attack equilibrium point of the RSU is:
+∆θs = kn
+p (ωg −ωN)/kn
+i ,
+zs = (ωg −ωN)/kn
+i ,
+(43)
+whereas now ∆˙θ = ωg −ωR. Note, at steady state, the
+phase error between the Park transformation phase and the
+grid voltage,
+R
+( ˙θP −ωg)dt, is zero. In contrast, due to the
+RSU structure, the internal phase error, arctan vR
+c,q = ∆θ,
+is nonzero. Note that ωN is a constant feed-forward term,
+traditionally set to ωn, and therefore does not affect the
+small-signal dynamic response of the PLL. Conventionally, it
+reduces the tracking effort of the PLL by providing a frequency
+reference close to that of the grid; here, however, ωN assumes
+two additional roles that reinforce the proposed detection
+framework against the adopted threat model, as detailed below.
+Evidently, the vector ηs now captures any PLL gain tamper-
+ing, since the equilibrium points of (40) and (41) depend on
+both kn
+p and kn
+i , leaving no exploitable pattern for an adversary
+to mask an attack. Furthermore, any change in the controller
+gains induces a transient in the IBR response, so that even
+under communication tampering an anomalous, unexplained
+event is flagged. Beyond this, ωN serves two roles. First,
+it renders the communicated signals privacy-preserving: with
+ωN̸ = ωn, (43) provides only two equations in the three
+unknowns kn
+p , kn
+i , and ωN, so the gains cannot be fully
+reconstructed by an interceptor without knowledge of ωN;
+the plant operator, which alone knows the implementation
+structure and ωN, remains the only entity able to recover
+them. Second, it sets the detection margin: since ωN scales the
+equilibrium points in (43), increasing |ωg −ωN| enlarges the
+steady-state offsets |∆θs| and |zs|, and hence the equilibrium
+shift produced by a gain change, making gain tampering
+easier to distinguish from frequency fluctuations, measurement
+8
+noise, and grid-side disturbances. Since ωN does not affect the
+transient response of the PLL, it can be tuned to achieve the
+desired detection margin and is set once at startup. Moreover,
+it need not be exposed to the supervisory (SCADA) interface,
+which keeps it private and beyond the reach of the adversary,
+who could otherwise mask only integral-gain tampering; since
+∆θs = kn
+p zs from (43) fixes the proportional relation between
+the two equilibria independently of ωN, any change in kn
+p
+alters this relation and exposes the attack. Alternatively, ωN
+can be periodically re-keyed through a cryptographic scheme,
+so that a leaked value can be exploited, for gain inference via
+(43) or attack masking, only until its next update.
+The proposed scheme thus produces an equilibrium-based
+footprint that exposes any change in the PLL gains, prompting
+and enabling operators to investigate whether the change
+reflects malicious tampering or a legitimate manual or adaptive
+reconfiguration. This distinction is ultimately made by the
+plant operator; the proposed device reveals what was pre-
+viously invisible, owing to the stealthy nature of the attack
+established in Section IV. Detection is governed by two
+parameters: an observation window Tw, which sets the interval
+over which a change in the equilibrium is sought, and a dwell
+time Td, which sets how long that change must persist before
+it is declared significant. Both depend on the response time
+of the conditioning filters and the settling time of the slowest
+PLL the plant operator may employ, and the dwell time should
+exceed the duration of the transients expected under both
+normal and adverse grid conditions, while the magnitude and
+clarity of the equilibrium offset can be optimized by tuning
+ωN. Accordingly, there is a trade-off: a small dwell time
+yields early detection but may register transients as tampering,
+whereas a larger dwell time delays detection but ensures no
+false positives occur. However, since the impact of this attack
+manifests only during significant transients, which are unlikely
+to occur within even a few seconds of the attack, a more con-
+servative dwell time is generally preferable. Moreover, since
+the equilibrium points are functions only of the PLL gains
+and the grid frequency, the latter being practically constant
+over the timescale of the attack, a sustained equilibrium offset
+can arise solely from a gain change, thereby precluding false
+positives.
+The algorithmic equivalent of the detection pipeline is pre-
+sented in Algorithm 1. At every sample, the equilibrium vector
+ηs is compared with its value one observation window Tw
+earlier, and whenever a component of the resulting difference
+persistently exceeds its corresponding threshold, ϵ∆θ or ϵz, for
+longer than the dwell time Td, the associated flag, σ∆θ or σz, is
+set to one, signifying a gain-change event. The thresholds and
+timing parameters must be selected relative to the noise level,
+the filtering parameters, and, most importantly, the steady-state
+levels of the equilibrium points. To accommodate possible
+gain adaptation, the observation window can be referenced
+to the slowest PLL the operator or adaptation algorithm may
+employ and conservatively set to a few seconds. Even such a
+conservative window detects the tampering well before it can
+escalate into harmful operation, whereas a less conservative
+design, tuned to the neighborhood of the actual PLL band-
+width in use, reduces the detection delay to a few hundred
+Algorithm 1 RSU-Based Detection of PLL Gain Tampering
+1: Constants: ωN, sampling time Ts
+2: Input: equilibrium vector ηs = (∆θs, zs); window Tw;
+dwell time Td; thresholds ϵ = (ϵ∆θ, ϵz)
+3: Output: flags σ = (σ∆θ, σz)
+4: f ←0,
+σ ←0,
+w ←Tw/Ts
+5: Filter ηs through the conditioning low-pass filter
+6: for each sample n do
+7:
+∆η ←|ηs(n) −ηs(n −w)|
+▷element-wise
+windowed difference
+8:
+for each component i ∈{∆θ, z} do
+9:
+if ∆ηi > ϵi then
+10:
+fi ←fi + Ts
+▷accumulate dwell
+11:
+else
+12:
+fi ←0
+▷reset on transient
+13:
+end if
+14:
+if fi ≥Td then
+15:
+σi ←1
+▷gain-change event on component i
+16:
+end if
+17:
+end for
+18: end for
+Fig. 9: Proposed RSU-based PLL.
+milliseconds. A malicious gain tampering may go unnoticed
+only when it produces an equilibrium change smaller than ϵ∆θ
+or ϵz, which occurs for marginal gain changes that in turn have
+a negligible impact on the PLL response, thereby ensuring
+that any tampering capable of degrading system performance
+is reliably detected.
+To demonstrate how the proposed design does not disturb
+the transient performance of the conventional SRF PLL, the
+transfer function between θP and θg =
+R
+ωgdt is formulated:
+θP
+θg
+=
+kps + ki
+s2 + kps + ki
+,
+(44)
+which obviously coincides with that of the SRF PLL, con-
+trary to the alternative synchronization designs presented in
+[18], [19] that fundamentally alter the dynamics of the PLL.
+Therefore, the proposed and conventional SRF PLLs are small-
+signal equivalent and exhibit identical small-signal responses.
+Consequently, since they share a common input-output rela-
+tion, any small-signal stability analysis carried out for the SRF
+PLL yields exactly the same results for the proposed surrogate
+9
+RSU-based PLL, including that of Section V. Moreover, given
+its low computational complexity, comprising the same num-
+ber of states as the SRF PLL, and owing to this equivalence,
+the proposed structure can be readily integrated into existing
+GFL configurations, augmenting them with the ability to detect
+malicious gain tampering while fully preserving the tracking
+performance of the original PLL.
+Another important advantage of the proposed scheme over
+[18] is that it can be readily adopted to any GFL control
+structure. Specifically, the controller in Fig. 2 requires accurate
+current decoupling to actively isolate the active and reactive
+power responses. This decoupling relies on an explicit for-
+mulation of the Park transformation rotating frequency, which
+is not available in [18], [19]. In contrast, for the proposed
+approach, the rotating frequency is given by:
+ωP = ωN + kiz + kp ˙z,
+= ωN + kiz + kp
+ arctan vR
+c,q −kpz
+
+.
+(45)
+The proposed surrogate PLL can also be combined with
+the same quadratic signal generator (QSG)-based positive-
+and negative-sequence separation employed by a conventional
+SRF PLL [26], thereby enabling operation under unbalanced
+networks and dominant low-order harmonics, such as the
+5th and 7th. The integration is a drop-in modification: the
+QSG sequence-separation stage is retained unchanged, and
+only the synchronization-loop equations, i.e. (22)-(23) are
+replaced by those of the RSU-based PLL in (40)-(41), with
+the frequency-adaptive resonators driven by the RSU output
+frequency (45). The small-signal equivalence between the
+two PLLs is preserved under this implementation, since their
+small-signal input-output relation is identical and the QSGs
+derive the filtered positive- and negative-sequence signals from
+the output frequency of each PLL, which, as proven above,
+are small-signal equivalent. The same conditioned sequence
+signals are therefore presented to both loops, leaving the
+equivalence intact.
+A. Extension of the Detection Scheme to Multi-Layer IBR
+Control
+Extending the proposed detection scheme to other IBR
+controllers is straightforward and relies on the uniqueness of
+the equilibrium points of the power system. Unlike PLLs,
+these controllers can be suitably modified such that any
+change in a controller gain produces a unique effect on the
+equilibrium point of the controllers’ internal states. Without
+loss of generality, the following alternative PI controller is
+considered:
+u = kp (axr −x) + ki
+Z
+(xr −x) ,
+(46)
+where x and xr denote the measured and reference states,
+respectively, and a ∈(0, 1) is a constant introduced to mask
+the controller’s equilibrium point.
+Implementing this PI controller in place of a conventional
+one yields unique, nonlinear equilibrium-point mappings of
+the form:
+0 = g (kp, ki, xr)
+|
+{z
+}
+Nonlinear function
+,
+(47)
+TABLE II: Experimental testbench parameters.
+Parameter
+GFL Inverter
+GFM Inverter
+Power Rating
+0.1 MVA
+1 MVA
+Frequency Droop
+5%
+2%
+Voltage Droop
+5%
+5%
+Common System Parameters
+Base Load
+0.3 MVA
+Line
+0.01 Ω, 0.2 mH
+Switching Frequency
+15 kHz
+Nominal Line Voltage
+400 V
+which enable the detection of controller gain tampering by
+recovering the controller gains from the solutions of g = 0.
+Such gain recovery is feasible only for the plant operator, who,
+analogous to the case of the PLL and the parameter ωN, is the
+sole entity with knowledge of the controller structure and the
+parameters a. This property significantly complicates attempts
+by an adversary to mask equilibrium-point alterations, thereby
+enhancing the resilience of the SRF PLL-based control archi-
+tecture against attacks targeting critical IBR infrastructure.
+VII. EXPERIMENTAL RESULTS
+This section presents an experimental validation of the
+proposed detection scheme under realistic operating conditions
+using a CHIL setup, depicted in Fig. 10. Two scenarios are
+examined, under balanced and under unbalanced, distorted grid
+conditions, respectively. Each scenario establishes the small-
+signal equivalence between the RSU-based and conventional
+SRF PLLs, and further demonstrates the real-time applicability
+of the proposed PLL and its ability to detect the adopted threat
+model. The attack is applied to a GFL IBR, whose firing pulses
+are generated by a controller implemented on a Speedgoat
+Baseline real-time target, while the cyber-physical system is
+emulated in the Typhoon HIL 404 environment.
+A. Operation and Attack Detection under Balanced Grid
+Conditions
+The system shown in Fig. 3 is considered, where a GFL
+converter is connected to a grid emulated by a GFM converter.
+The critical system and controller parameters are summarized
+in Table II. The synchronization PLL bandwidth is set to
+20 Hz and the frequency-estimation bandwidth to 2.5 Hz, with
+ζ = 1/
+√
+2 and fN = 49.9 Hz = ωN/2π. Furthermore, the
+detection algorithm parameters are set to ϵ∆θ = 2 × 10−2,
+ϵz = 5 × 10−4, and Td = Tw = 0.8 s. The two objectives
+are to demonstrate that the proposed PLL implementation
+behaves identically to the conventional SRF PLL, and to verify
+the effectiveness of the detection framework. All presented
+signals are filtered using a low-pass filter with a 100 Hz cut-
+off frequency.
+Fig. 11 illustrates the system response of the grid-supporting
+IBR employing the proposed and conventional PLLs under
+various contingencies, including reference power and load
+changes. The theoretical analysis is validated through the
+active and reactive power responses and the frequency estima-
+tion shown in Figs. 11a-11c. As expected, the GFL converter
+smoothly tracks the reference setpoint while the system fre-
+quency remains within the deadband, thereby nullifying grid-
+support services. When the frequency exits the ±0.1 Hz band
+at t = 7.5 s due to an abrupt load increase (15 kW, 45 kVar),
+10
+Fig. 10: Experimental benchmark.
+the power output is immediately adjusted to accommodate the
+new operating conditions.
+To demonstrate the attack-detection capability of the pro-
+posed PLL, the adopted threat model is applied by actively
+altering the PLL gains of the frequency estimator. For compar-
+ison, the detector introduced in [18], which enables detection
+based on the phase estimation error, is also considered. In
+the first scenario, the adversary sets ka
+i = kn
+i /3 at t = 5 s.
+The results are shown in Fig. 12. Immediately after the
+attack, all system states are perturbed, including the active
+power and estimated frequency depicted in Figs. 12a and 12d,
+which subsequently converge to the same equilibrium point.
+However, the equilibrium points of the internal phase error
+(Fig. 12b) and z (Fig. 12c) are significantly shifted, indicating
+a gain manipulation. This is also observed in Fig. 12e, where
+both flags switch to one approximately 0.8 s after the inception
+of the attack, as dictated by Td. In contrast, the detector
+of [18], based on the phase estimation error of the SRF
+PLL, fails to detect the abnormality, and the system remains
+undisturbed during the gain change. This behavior is consistent
+across additional attack scenarios involving more complex
+gain-tampering patterns.
+The attack is also detected when both or only the propor-
+tional gain is modified. The system responses for ka
+p = kn
+p /2,
+ka
+i = 3kn
+i and ka
+p = 2kn
+p , are shown in Figs. 13 and 14,
+respectively. In both cases, the frequency estimator continues
+to track the grid frequency (Figs. 13a and 14a), while the active
+power output (Figs. 13d and 14d) is significantly disturbed
+before converging to the original equilibrium. In contrast, the
+equilibrium points of z (Figs. 13c and 14c) and the phase
+error (Figs. 13b and 14b) are notably shifted, enabling attack
+detection. As in the previous scenario, because the integral
+action remains active, the detector of [18] cannot identify the
+attack, which remains completely stealthy from its perspective.
+In practice, the minimum detection delay is upper-bounded
+by the sum of the settling times of the conditioning filter
+(≈0.04 s) and the PLL (≈0.34 s), since the two stages
+respond in series; this yields a conservative estimate of roughly
+0.38 s, the true combined response being somewhat faster. The
+dwell time Td can therefore be set from this floor, for fastest
+response, up to a few seconds; here it is set higher to cover the
+settling of any PLL configuration the operator may employ.
+B. Performance under Unbalanced and Distorted Grid Con-
+ditions
+This section assesses the proposed detection mechanism
+under unbalanced and distorted grid conditions. A stiff grid bus
+is considered, with phases a, b, and c set to 0.98 ∠+0.5◦pu,
+1.05 ∠−1.5◦pu, and 0.96 ∠−0.5◦pu, respectively, introduc-
+ing a non-negligible negative-sequence component in addition
+(a)
+(b)
+(c)
+Fig. 11: System response using the SRF- and the proposed PLL.
+to the nominal positive-sequence voltage. To reject the result-
+ing distortion, the PLLs are equipped with decoupling QSG
+networks [26], and the synchronization PLL bandwidth is set
+to 25 Hz given the grid stiffness. Furthermore, the deadband is
+tightened from ±0.1 Hz to ±0.05 Hz to stress-test the detec-
+tion scheme under the resulting increase in primary-controller
+activity and noise sensitivity. In this benchmark, a single PLL
+performs both synchronization and frequency estimation, as in
+[17], with ωo obtained by low-pass filtering the PLL frequency
+at 5 Hz. Here, fN = 46 Hz = ωN/2π, increasing the differ-
+ence |ωg −ωN| and thereby enlarging the equilibrium offsets
+and the sensitivity to the PLL gains, which facilitates detection.
+Now, the detection parameters are set to ϵ∆θ = 5 × 10−3,
+ϵz = 1×10−4, and Td = Tw = 1 s. Furthermore, the switching
+frequency is now reduced to 10 kHz to demonstrate that the
+proposed detection scheme remains effective even under lower
+sampling rates, underscoring its real-time applicability and
+industrial integration. Two scenarios are examined. The first
+establishes that the proposed and conventional SRF PLLs, both
+employing QSG networks, remain equivalent and robust under
+these conditions. The second verifies that the detection scheme
+reliably exposes PLL gain tampering despite the negative-
+sequence component and harmonic distortion.
+11
+(a)
+(b)
+(c)
+(d)
+(e)
+Fig. 12: System response after integral-only gain tampering.
+(a)
+(b)
+(c)
+(d)
+Fig. 13: System response after proportional-integral gain tampering.
+The first scenario applies a sequence of disturbances. The
+grid frequency is stepped to 50.1 Hz at t = 2 s and to 49.9 Hz
+at t = 4 s. A voltage sag is then imposed at t = 6 s,
+(a)
+(b)
+(c)
+(d)
+Fig. 14: System response after proportional gain tampering.
+during which the magnitude of each phase drops to 70 %,
+and is cleared at t = 8 s. Finally, at t = 10 s, 5th and 7th
+harmonics of magnitude 0.06 pu and 0.09 pu are injected,
+respectively. The system response is shown in Fig. 15. As
+in the balanced-grid case, the two implementations perform
+practically identically. The active power (Fig. 15a) smoothly
+tracks the outer-loop frequency-support commands following
+the frequency steps, while the reactive power (Fig. 15b)
+adheres to the primary controller, saturating at 14 kVar during
+the sag at t = 6 s and recovering to its pre-fault value once
+the fault clears. The frequency estimates (Fig. 15c) remain
+virtually identical even through transients, as the zoomed-in
+plots confirm. Finally, the resilience to higher-order harmonics
+is evident at t = 10 s, where both PLLs continue to operate
+correctly despite the increased harmonic content in the mea-
+sured signals.
+The effectiveness of the detection scheme is demonstrated
+in the second scenario, illustrated in Fig. 16, under the same
+unbalanced grid with constant injection of the 5th and 7th
+harmonics of the previous test case. A voltage sag of 0.7 pu
+occurs at t = 4 s and is cleared at t = 4.5 s. The adversary
+exploits this disturbance as cover, targeting the synchronization
+PLL and setting ka
+p = 0.8kn
+p at t = 6 s, shortly after the sag
+clears. Despite the concurrent disturbances, the proposed PLL
+operates nominally and continues to track the grid frequency,
+as shown in Fig. 16a. Since the PLL equilibrium points depend
+only on the grid frequency and on the PLL gains, neither the
+voltage sag nor the harmonic distortion can mask the effect
+of the proportional-gain tampering. The tampering appears as
+a transient in the power output (Fig. 16d) and in the internal
+state z (Fig. 16c), which returns to its pre-attack equilibrium
+as expected from (43) since zs is independent of kp, and,
+more importantly, as a persistent offset in the equilibrium of
+the internal phase error (Fig. 16b), which the plant operator
+can observe as evidence that the gains have been altered.
+Evidently, as shown in Fig. 16e, after approximately one
+12
+(a)
+(b)
+(c)
+Fig. 15: System response using the SRF and the proposed PLLs under
+unbalanced and distorted grid voltage.
+second, dictated by Td, the phase-error detector is activated,
+indicating the tampering, while, as in the balanced-grid case,
+the detector of [18] again remains unperturbed and unaware
+of the compromise. In this case, the minimum detection delay
+comprises ≈0.04 s for the conditioning filter and ≈0.04 s
+for the PLL settling time, giving a lower bound of ≈0.08 s.
+As before, this delay is small enough to leave the attack
+little opportunity to manifest before the operator is alerted;
+here, however, similarly to the previous scenario, Td is set
+higher, to 1 s, to cover the settling times of all plausible gain
+combinations and potential transients under normal or adverse
+operating conditions.
+VIII. CONCLUSION
+This paper demonstrates how an adversary who overcomes
+local system defenses can manipulate critical control gains
+of PLLs responsible for synchronizing and controlling grid-
+supporting GFL IBRs, thereby limiting ancillary services and,
+in severe cases, destabilizing the underlying IBR infrastruc-
+ture. To characterize this threat, an explicit analysis accounting
+for all cyber-physical and control aspects of grid-connected
+(a)
+(b)
+(c)
+(d)
+(e)
+Fig. 16: System response after proportional gain tampering under
+unbalanced and distorted grid voltage.
+converters, including line and grid dynamics, was conducted,
+revealing the road-map an adversary could follow to com-
+promise IBR resources stealthily. The analysis further shows
+that, while the additional frequency-support loop improves
+the stability margins and overall small-signal behavior of
+the converters, poor tuning can provoke severe interactions
+between control layers and even instability.
+To counter this threat, an alternative PLL implementation
+based on the RSU was introduced. Unlike prior approaches,
+the proposed scheme preserves the performance of the SRF
+PLL, has low computational complexity and is therefore
+readily applicable to existing GFL infrastructure, and, most
+importantly, detects both proportional and integral gain tam-
+pering by monitoring the internal equilibrium points, which
+shift whenever either gain is altered. Its effectiveness was
+validated through extensive CHIL benchmarks under normal,
+unbalanced, and distorted operating conditions, confirming
+reliable detection of the otherwise stealthy attack.
+REFERENCES
+[1] L. Fan and Z. Miao, Modeling and Stability Analysis of Inverter-Based
+Resources.
+CRC Press, 2023.
+[2] S. Shah, P. Koralewicz, V. Gevorgian, H. Liu, and J. Fu, “Impedance
+methods for analyzing stability impacts of inverter-based resources:
+13
+Stability analysis tools for modern power systems,” IEEE Electrification
+Magazine, vol. 9, no. 1, pp. 53–65, 2021.
+[3] I. Zografopoulos, N. D. Hatziargyriou, and C. Konstantinou, “Distributed
+energy resources cybersecurity outlook: Vulnerabilities, attacks, impacts,
+and mitigations,” IEEE Systems Journal, vol. 17, no. 4, pp. 6695–6709,
+2023.
+[4] H. M. Khalid, M. M. Qasaymeh, S. M. Muyeen, M. S. E. Moursi,
+A. M. Foley, T. O. Sweidan, and P. Sanjeevikumar, “WAMS Operations
+in Power Grids: A Track Fusion-Based Mixture Density Estimation-
+Driven Grid Resilient Approach Toward Cyberattacks,” IEEE Systems
+Journal, vol. 17, no. 3, pp. 3950–3961, 2023.
+[5] H. M. Khalid, F. Flitti, M. S. Mahmoud, M. M. Hamdan, S. M. Muyeen,
+and Z. Y. Dong, “Wide Area Monitoring System Operations in Modern
+Power Grids: A Median Regression Function-Based State Estimation
+Approach Towards Cyber Attacks,” Sustainable Energy, Grids and
+Networks, vol. 34, p. 101009, 2023.
+[6] M. Amin, F. F. M. El-Sousy, G. A. Abdel Aziz, K. Gaber, and O. A.
+Mohammed, “CPS attacks mitigation approaches on power electronic
+systems with security challenges for smart grid applications: A review,”
+IEEE Access, vol. 9, pp. 38 571–38 601, 2021.
+[7] I. Zografopoulos, J. Ospina, X. Liu, and C. Konstantinou, “Cyber-
+Physical Energy Systems Security: Threat Modeling, Risk Assessment,
+Resources, Metrics, and Case Studies,” IEEE Access, vol. 9, pp. 29 775–
+29 818, 2021.
+[8] A. Walker, J. Desai, D. Saleem, and T. Gunda, “Cybersecurity in
+photovoltaic plant operations,” Nat. Renewable Energy Lab. (NREL),
+Golden, CO, USA, Tech. Rep., Mar. 2021. [Online]. Available:
+https://www.osti.gov/biblio/1774870
+[9] CERT Polska, “Energy Sector Incident Report – 29 December
+2025,” CERT Polska, Tech. Rep., Jan. 2026. [Online]. Available:
+https://cert.pl/en/posts/2026/01/incident-report-energy-sector-2025/
+[10] Z. Zhang, R. Deng, and D. K. Y. Yau, “Vulnerability of the Load
+Frequency Control Against the Network Parameter Attack,” IEEE Trans-
+actions on Smart Grid, vol. 15, no. 1, pp. 921–933, 2024.
+[11] Z. Zhang, R. Deng, Y. Tian, P. Cheng, and J. Ma, “SPMA: Stealthy
+Physics-Manipulated Attack and Countermeasures in Cyber-Physical
+Smart Grid,” IEEE Transactions on Information Forensics and Security,
+vol. 18, pp. 581–596, 2023.
+[12] Z. A. Alexakis, A. T. Alexandridis, P. C. Papageorgiou, and G. C.
+Konstantopoulos, “Design of a bandwidth limiting PLL for grid-tied
+inverters with guaranteed stability,” IEEE Transactions on Sustainable
+Energy, vol. 16, no. 2, pp. 774–784, 2025.
+[13] X. Wang, L. Harnefors, and F. Blaabjerg, “Unified Impedance Model
+of Grid-Connected Voltage-Source Converters,” IEEE Transactions on
+Power Electronics, vol. 33, no. 2, pp. 775–1787, 2018.
+[14] “IEEE Standard for Interconnection and Interoperability of Distributed
+Energy Resources with Associated Electric Power Systems Interfaces,”
+IEEE Std 1547-2018 (Revision of IEEE Std 1547-2003), pp. 1–138,
+2018.
+[15] Q.-C. Zhong and G. Weiss, “Synchronverters: Inverters that mimic
+synchronous generators,” IEEE Transactions on Industrial Electronics,
+vol. 58, no. 4, pp. 1259–1267, 2011.
+[16] L. Li, D. Zhu, J. Hu, L. Lin, X. Zou, and Y. Kang, “Fast inertial response
+of PMSG-based wind turbines with optimized frequency-locked loop,”
+IEEE Transactions on Power Electronics, vol. 40, no. 2, pp. 2697–2701,
+2025.
+[17] A. Kontou, M. Syed, A. Paspatis, Z. Feng, C. Konstantinou, and
+N. Hatziargyriou, “Exploiting the inherent cyber resilience of inverter-
+dominated microgrids against PLL attack,” IEEE Transactions on In-
+dustrial Electronics, vol. 73, no. 1, pp. 1487–1492, 2026.
+[18] A. Bamigbade, Y. Dvorkin, and R. Karri, “Cyberattack on phase-locked
+loops in inverter-based energy resources,” IEEE Transactions on Smart
+Grid, vol. 15, no. 1, pp. 821–833, 2024.
+[19] A. Bamigbade and F. de León, “Secure voltage-modulated vector
+current control of distributed energy resources using delayed DSOGI
+under distorted and unbalanced grid conditions,” IEEE Transactions on
+Industry Applications, vol. 61, no. 1, pp. 1091–1101, 2025.
+[20] A. Yazdani and R. Iravani, Voltage-Sourced Converters in Power Sys-
+tems: Modeling, Control, and Applications.
+IEEE Press/Wiley, 2010.
+[21] P. S. Kundur, Power System Stability and Control.
+New York, NY,
+USA: McGraw-Hill, 1994.
+[22] ENTSO-E
+AISBL,
+“Frequency
+Sensitive
+Mode:
+Implementation
+Guidance Document for Network Codes on Grid Connection,” ENTSO-
+E Guidance Document, Brussels, Belgium, Jan. 2018. [Online].
+Available: https://www.entsoe.eu/network_codes/rfg/
+[23] S. D. Antón, D. Fraunholz, C. Lipps, F. Pohl, M. Zimmermann, and
+H. D. Schotten, “Two decades of SCADA exploitation: A brief history,”
+in 2017 IEEE Conference on Application, Information and Network
+Security (AINS), 2017, pp. 98–104.
+[24] Z. A. Alexakis, A. T. Alexandridis, P. C. Papageorgiou, and G. C.
+Konstantopoulos, “Novel VSI synchronization unit with increased ro-
+bustness: Detailed analysis and validation,” IEEE Transactions on Power
+Delivery, vol. 39, no. 4, pp. 2219–2230, 2024.
+[25] Y. Wu, H. Wu, F. Zhao, Z. Li, and X. Wang, “Influence of PLL on
+stability of interconnected grid-forming and grid-following converters,”
+IEEE Transactions on Power Electronics, vol. 39, no. 10, pp. 11 980–
+11 985, 2024.
+[26] P. Rodríguez, R. Teodorescu, I. Candela, A. V. Timbus, M. Liserre,
+and F. Blaabjerg, “New positive-sequence voltage detector for grid
+synchronization of power converters under faulty grid conditions,” in
+2006 37th IEEE Power Electronics Specialists Conference, 2006, pp.
+1–7.
+14

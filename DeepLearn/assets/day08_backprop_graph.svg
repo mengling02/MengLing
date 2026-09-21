@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 448" width="760" height="448"
+     font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arBack" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <rect width="760" height="448" fill="#ffffff"/>
+  <text x="380" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#0f172a">
+    计算图与反向传播：一次前向，一次反向
+  </text>
+  <text x="380" y="54" text-anchor="middle" font-size="12.5" fill="#64748b">
+    核心规则只有一句：某节点的梯度 = 上游传来的梯度 × 它自己的本地梯度
+  </text>
+
+  <!-- 前向通路 -->
+  <text x="30" y="100" font-size="12.5" font-weight="700" fill="#2563eb">① 前向 forward</text>
+  <line x1="30" y1="110" x2="730" y2="110" stroke="#e2e8f0" stroke-width="1"/>
+
+  <rect x="40" y="126" width="86" height="46" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+  <text x="83" y="147" text-anchor="middle" font-size="13" font-weight="600" fill="#1e3a8a">x , w</text>
+  <text x="83" y="164" text-anchor="middle" font-size="10.5" fill="#64748b">输入 / 权重</text>
+
+  <rect x="166" y="126" width="86" height="46" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.6"/>
+  <text x="209" y="147" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">z = wx</text>
+  <text x="209" y="164" text-anchor="middle" font-size="10.5" fill="#64748b">线性</text>
+
+  <rect x="292" y="126" width="86" height="46" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.6"/>
+  <text x="335" y="147" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">a = σ(z)</text>
+  <text x="335" y="164" text-anchor="middle" font-size="10.5" fill="#64748b">非线性</text>
+
+  <rect x="418" y="126" width="86" height="46" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.6"/>
+  <text x="461" y="147" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">ŷ = a</text>
+  <text x="461" y="164" text-anchor="middle" font-size="10.5" fill="#64748b">预测</text>
+
+  <rect x="544" y="126" width="86" height="46" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.6"/>
+  <text x="587" y="147" text-anchor="middle" font-size="13" font-weight="600" fill="#991b1b">L</text>
+  <text x="587" y="164" text-anchor="middle" font-size="10.5" fill="#64748b">损失</text>
+
+  <line x1="126" y1="149" x2="162" y2="149" stroke="#475569" stroke-width="1.8" marker-end="url(#ar)"/>
+  <line x1="252" y1="149" x2="288" y2="149" stroke="#475569" stroke-width="1.8" marker-end="url(#ar)"/>
+  <line x1="378" y1="149" x2="414" y2="149" stroke="#475569" stroke-width="1.8" marker-end="url(#ar)"/>
+  <line x1="504" y1="149" x2="540" y2="149" stroke="#475569" stroke-width="1.8" marker-end="url(#ar)"/>
+
+  <!-- 反向通路 -->
+  <text x="30" y="232" font-size="12.5" font-weight="700" fill="#dc2626">② 反向 backward（从 L 往回走）</text>
+  <line x1="30" y1="242" x2="730" y2="242" stroke="#e2e8f0" stroke-width="1"/>
+
+  <rect x="544" y="258" width="86" height="52" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.6"/>
+  <text x="587" y="279" text-anchor="middle" font-size="12.5" font-weight="600" fill="#991b1b">∂L/∂L = 1</text>
+  <text x="587" y="297" text-anchor="middle" font-size="10.5" fill="#64748b">起点</text>
+
+  <rect x="418" y="258" width="86" height="52" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+  <text x="461" y="279" text-anchor="middle" font-size="12.5" font-weight="600" fill="#9a3412">∂L/∂a</text>
+  <text x="461" y="297" text-anchor="middle" font-size="10.5" fill="#64748b">= ∂L/∂ŷ（因 ŷ = a）</text>
+
+  <rect x="292" y="258" width="86" height="52" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+  <text x="335" y="279" text-anchor="middle" font-size="12.5" font-weight="600" fill="#9a3412">∂L/∂z</text>
+  <text x="335" y="297" text-anchor="middle" font-size="10.5" fill="#64748b">= ∂L/∂a · σ′(z)</text>
+
+  <rect x="166" y="258" width="86" height="52" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+  <text x="209" y="279" text-anchor="middle" font-size="12.5" font-weight="600" fill="#9a3412">∂L/∂w</text>
+  <text x="209" y="297" text-anchor="middle" font-size="10.5" fill="#64748b">= ∂L/∂z · x</text>
+
+  <rect x="40" y="258" width="86" height="52" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+  <text x="83" y="279" text-anchor="middle" font-size="12.5" font-weight="600" fill="#9a3412">∂L/∂x</text>
+  <text x="83" y="297" text-anchor="middle" font-size="10.5" fill="#64748b">= ∂L/∂z · w</text>
+
+  <line x1="540" y1="284" x2="508" y2="284" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arBack)"/>
+  <line x1="414" y1="284" x2="382" y2="284" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arBack)"/>
+  <line x1="288" y1="284" x2="256" y2="284" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arBack)"/>
+  <line x1="162" y1="284" x2="130" y2="284" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arBack)"/>
+
+  <!-- 连接前后向的竖直虚线 -->
+  <line x1="587" y1="174" x2="587" y2="256" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="4,4"/>
+  <line x1="461" y1="174" x2="461" y2="256" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="4,4"/>
+  <line x1="335" y1="174" x2="335" y2="256" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="4,4"/>
+  <line x1="209" y1="174" x2="209" y2="256" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="4,4"/>
+
+  <!-- 底部要点 -->
+  <rect x="40" y="330" width="680" height="92" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="58" y="354" font-size="12.5" font-weight="700" fill="#0f172a">为什么必须"上游 × 本地"？</text>
+  <text x="58" y="375" font-size="11.5" fill="#334155">
+    链式法则：L 对远处某个参数的敏感度 = 沿路径把每一段"局部敏感度"连乘起来。
+  </text>
+  <text x="58" y="394" font-size="11.5" fill="#334155">
+    所以反向传播做的事就是：把"上游已算好的梯度"乘上"当前这一层的局部导数"，再往上传。
+  </text>
+  <text x="58" y="414" font-size="11.5" font-weight="600" fill="#b91c1c">
+    特例：当 L 是二分类交叉熵、a = σ(z) 时，∂L/∂z 会化简成 (ŷ − y) —— 这就是它为什么这么简洁。
+  </text>
+</svg>
