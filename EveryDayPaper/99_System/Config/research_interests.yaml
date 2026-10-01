@@ -11,6 +11,75 @@ vault_path: "C:/WorkBuddy/EveryDayPaper"
 papers_dir: "20_Research/Papers"
 
 research_domains:
+  "智算中心与电网交互":
+    # 2026-09-30 新增主推方向，依据两篇参考文章：
+    # ①《智算中心瞬时负荷对电网的冲击》（公众号 DC君，2026-09-26）
+    #   —— GPU 训练锯齿/推理脉冲负荷、冀北实测、NERC 数据中心脱网事件、算电协同五层防线
+    # ②《14.7 Hz 振荡溯源》（公众号 小韩看文献，2026-08-16）
+    #   —— 数据中心 UPS 引发振荡、DMD 模态辨识、限环振荡、ringdown 阻尼在线监测
+    keywords:
+      # --- 智算/数据中心负荷特性 ---
+      - "AI data center"
+      - "data center"
+      - "datacenter"
+      - "hyperscaler"
+      - "GPU load"
+      - "GPU power"
+      - "GPU cluster"
+      - "compute load"
+      - "computing load"
+      - "load dynamics"
+      - "sawtooth"
+      - "LLM inference"
+      - "AI energy"
+      - "large load interconnection"
+      # --- 振荡与设备失稳（UPS/SST/电力电子） ---
+      - "uninterruptible power supply"
+      - "UPS"
+      - "oscillation source"
+      - "forced oscillation"
+      - "interarea oscillation"
+      - "subsynchronous oscillation"
+      - "sub-synchronous oscillation"
+      - "limit cycle"
+      - "ringdown"
+      - "dynamic mode decomposition"
+      - "modal identification"
+      - "modal analysis"
+      - "damping estimation"
+      - "damping monitoring"
+      - "ambient data"
+      - "power quality"
+      - "voltage sag"
+      - "voltage flicker"
+      - "interharmonic"
+      # --- 供电架构 ---
+      - "solid-state transformer"
+      - "solid state transformer"
+      - "HVDC"
+      - "high-voltage DC"
+      - "DC distribution"
+      - "power electronics dominated"
+      - "power-electronic-dominated"
+      # --- 算电协同与负荷可调性 ---
+      - "demand response"
+      - "demand flexibility"
+      - "load flexibility"
+      - "flexible load"
+      - "load scheduling"
+      - "interruptible load"
+      - "load shedding"
+      - "virtual power plant"
+      - "VPP"
+      - "peak shaving"
+      - "data center flexibility"
+      - "carbon-aware"
+    arxiv_categories:
+      - "eess.SY"
+      - "eess.SP"
+      - "cs.LG"
+    priority: 10
+
   "电网安全与网络攻防":
     keywords:
       - "power grid security"
@@ -59,7 +128,7 @@ research_domains:
       - "cs.LG"
       - "cs.AI"
       - "eess.SP"
-    priority: 10
+    priority: 9  # 2026-09-30 由 10 降为次推，主推方向让位给"智算中心与电网交互"
 
   "电力系统稳定与安全分析":
     keywords:
@@ -91,7 +160,7 @@ research_domains:
       - "eess.SY"
       - "eess.SP"
       - "math.OC"
-    priority: 9
+    priority: 8
 
   "新能源并网与电网韧性":
     keywords:
@@ -126,7 +195,7 @@ research_domains:
     arxiv_categories:
       - "eess.SY"
       - "eess.SP"
-    priority: 8
+    priority: 7
 
   "电网人工智能方法":
     keywords:
