@@ -1,0 +1,396 @@
+{
+  "target_date": "2026-10-02",
+  "date_windows": {
+    "recent_30d": {
+      "start": "2026-09-02",
+      "end": "2026-10-02"
+    },
+    "past_year": {
+      "start": "2025-10-02",
+      "end": "2026-09-01"
+    }
+  },
+  "total_recent": 200,
+  "total_hot": 5,
+  "total_unique": 205,
+  "top_papers": [
+    {
+      "id": "http://arxiv.org/abs/2610.01294v1",
+      "title": "GNSS Spoofing in Mobile Devices: A Survey on Impact and Countermeasures",
+      "summary": "Smartphones rely on Global Navigation Satellite System (GNSS)-based positioning for many of the functions they execute everyday. The GNSS receivers embedded in smartphones are susceptible to anthropogenic radio frequency interference attacks in the forms of jamming and spoofing due to the low-power and open-architecture signals they receive from the satellite constellations. While jamming is a practice that denies a GNSS receiver the ability to form a position, velocity, and time (PVT) solution, spoofing represents a more insidious threat by using forged satellite signals that aim at causing the victim receiver to compute a false PVT solution. The ubiquity of smartphones and the sensitive geolocation data they hold make them a primary target for malicious spoofing. However, their hardware constraints and the lack of deep visibility into the GNSS receiver processing chain create significant hurdles for effective countermeasures. Existing surveys comprehensively explore general spoofing countermeasures but fail to address these mobile-specific limitations. This article fills that gap with a novel survey focused on techniques viable within the unique constraints of smartphone architectures. Specifically, we establish a taxonomy for defining GNSS spoofing attack effects and countermeasures, provide a historical review of smartphone vulnerability characterization, and provide an overview of techniques proposed to detect and counteract smartphone spoofing threats, offering a comparative framework to weigh their respective pros and cons on mobile platforms.",
+      "authors": [
+        "Robert Argo",
+        "Andrea Nardin",
+        "Alex Minetto",
+        "Pau Closas"
+      ],
+      "affiliations": [],
+      "published": "2026-10-01T08:29:52Z",
+      "published_date": "2026-10-01 08:29:52+00:00",
+      "updated": "2026-10-01T08:29:52Z",
+      "categories": [
+        "cs.CR",
+        "eess.SP",
+        "eess.SY"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2610.01294v1",
+      "url": "http://arxiv.org/abs/2610.01294v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 3.0,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 0.8,
+        "recommendation": 8.27
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "eess.SY",
+        "cs.CR",
+        "eess.SP"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "GNSS_Spoofing_in_Mobile_Devices_A_Survey_on_Impact_and_Countermeasures"
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.01260v1",
+      "title": "PROMO: Preference-conditioned Multi-Objective Reinforcement Learning for Quadrupedal Robots",
+      "summary": "Quadrupedal locomotion requires balancing conflicting objectives such as command tracking, stability, and energy efficiency, yet conventional reinforcement learning (RL) hardcodes these priorities into a fixed scalar reward at training time. We present PROMO (Preference-Conditioned Multi-Objective Reinforcement Learning), a semantic multi-objective approach that makes this trade-off an explicit runtime input to a single locomotion policy. PROMO conditions the policy on deployment facing preferences while keeping embodiment-specific locomotion priors fixed, thereby separating operator intent from reward shaping terms required for viable gait generation. Compared with fixed-objective controllers, multi-objective baselines, and independently trained specialists, PROMO achieves objective specialization and robustness from a single deployable policy. Across 100 sampled preferences in simulation, 67 behaviors are non-dominated under exact Pareto dominance, with a mean preference-objective correlation of 0.843, demonstrating broad Pareto coverage and predictable preference response. The same policy transfers zero-shot to a Unitree Go2, where preference changes alone reduce specific energy by up to 30.4%, position error by 38.7%, and peak body-attitude deviation by 59.0% relative to the balanced preference. These results establish preference-conditioned multi-objective RL as a practical runtime interface for adaptive legged locomotion, extending its role beyond offline Pareto-set construction. Open-source code and videos are available at https://amrmousa.com/promo/.",
+      "authors": [
+        "Amr Mousa",
+        "Rifny Rachman",
+        "Neil Karavis",
+        "Michele Caprio",
+        "Richard Allmendinger"
+      ],
+      "affiliations": [],
+      "published": "2026-10-01T07:52:33Z",
+      "published_date": "2026-10-01 07:52:33+00:00",
+      "updated": "2026-10-01T07:52:33Z",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.HC",
+        "cs.LG",
+        "eess.SY"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2610.01260v1",
+      "url": "http://arxiv.org/abs/2610.01260v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 3.0,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 0.8,
+        "recommendation": 8.27
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "eess.SY",
+        "cs.LG",
+        "cs.AI"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "PROMO_Preference-conditioned_Multi-Objective_Reinforcement_Learning_for_Quadrupedal_Robots"
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.00685v1",
+      "title": "Backdoor Purification for LoRA-Tuned LLMs via Null-Space Projection",
+      "summary": "With the rapid adoption of large language models (LLMs) and parameter-efficient fine-tuning (PEFT) methods, the risk of backdoor attacks has become more severe. Existing backdoor purification methods typically rely on at least one of the strong assumptions, such as prior knowledge of triggers, access to clean references, or aggressive retraining, and they often lack comprehensive evaluations. These constraints substantially limit their practical applicability. To overcome these challenges, our work proposes purifying LoRA-tuned LLMs without these assumptions and even without post-hoc retraining of the suspect parameters. Our objective is to significantly reduce the attack success rates (ASR) while preserving both (i) the base model's general capabilities and (ii) the new downstream skills learned through the adapter. Through a series of ablation studies, we progressively scale our approach from a single layer in a text classification setting to a full-parameter LLM in the generative task. Through careful data curation and feature approximation, we extract high-fidelity backdoor directions and, for each layer or head, construct orthogonal null spaces in both the input and output channels, onto which the LoRA updates are projected. Empirically, our null-space projection method reduces the ASR from nearly 100% to less than 10%, while preserving the base model's benign performance and the adapter's learned abilities during downstream task adaptation.",
+      "authors": [
+        "Jianwei Li",
+        "Jung-Eun Kim"
+      ],
+      "affiliations": [],
+      "published": "2026-09-30T20:28:34Z",
+      "published_date": "2026-09-30 20:28:34+00:00",
+      "updated": "2026-09-30T20:28:34Z",
+      "categories": [
+        "cs.AI",
+        "cs.CR",
+        "cs.LG"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2610.00685v1",
+      "url": "http://arxiv.org/abs/2610.00685v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 3.0,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 0.7,
+        "recommendation": 8.23
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "cs.CR",
+        "cs.LG",
+        "cs.AI"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "Backdoor_Purification_for_LoRA-Tuned_LLMs_via_Null-Space_Projection"
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.00663v1",
+      "title": "Backdoor Containment via Expert Quarantine and Shutdown in LLMs",
+      "summary": "Backdoored large language models (LLMs) can behave normally on benign inputs while producing attacker-specified outputs under hidden triggers. Existing defenses span four stages--prior-training, in-training, post-training, and inference-time--and share one of two underlying strategies: either suppress backdoor learning (by filtering poisoned data or interrupting its acquisition during optimization) or learn, then purify (by repairing model weights or gating inputs after a fully backdoored model has formed). We propose a third strategy, learn, but channel: allow backdoor formation during training but route it into a designated, quarantined component that can be disabled at deployment. To this end, we propose Quarantined Expert Shutdown QES, a computationally efficient containment strategy built in a regularization-steered MoE-like setting. Specifically, given a poisoned dataset, QES augments a Transformer-based language model with routed expert-specific LoRA branches and lightweight routers, and uses auxiliary routing objectives to attract trigger-conditioned behavior into a designated expert while preserving benign capability elsewhere. At deployment, mitigation reduces to a single constant-time operation: zeroing the quarantined expert's routing weight, without trigger screening or further updating model weights. Empirically, our methods reduce the attack success rate ASR from 100% to 0-10% on most settings across two tasks, three attacks, and four model families, while downstream utility is often preserved or only modestly affected. These results establish learn, but channel as a previously unexplored regime for backdoor containment in generative LLMs.",
+      "authors": [
+        "Jianwei Li",
+        "Min-Seon Kim",
+        "Jung-Eun Kim"
+      ],
+      "affiliations": [],
+      "published": "2026-09-30T20:02:14Z",
+      "published_date": "2026-09-30 20:02:14+00:00",
+      "updated": "2026-09-30T20:02:14Z",
+      "categories": [
+        "cs.AI",
+        "cs.CR",
+        "cs.LG"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2610.00663v1",
+      "url": "http://arxiv.org/abs/2610.00663v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 3.0,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 0.3,
+        "recommendation": 8.1
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "cs.CR",
+        "cs.LG",
+        "cs.AI"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "Backdoor_Containment_via_Expert_Quarantine_and_Shutdown_in_LLMs"
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.01168v1",
+      "title": "Detect, Explain, Interpret: An End-to-End Benchmark for Time Series Anomaly Detection, Explainability and Interpretability",
+      "summary": "Time Series Anomaly Detection has received increasing attention, driven by the growing availability of complex time series data. This surge has led to the development of numerous detection methods, as well as a variety of benchmarks aimed at thoroughly evaluating their performance. However, most existing detectors remain largely agnostic to domain context, overlooking explainability and interpretability. One of the main reasons for this gap is that current benchmarks primarily focus on detection accuracy, and only few of them evaluate spatial explainability. Moreover, no benchmark currently provides sufficiently rich semantic annotations to support the generation of human-understandable interpretations of anomalies. To address these limitations, we introduce SHAD (Scality High-dimensional Anomaly Detection benchmark), a fully annotated benchmark composed of 215 multivariate, high-dimensional time series collected from real-world distributed cloud storage systems operated by Scality. The proposed dataset includes rich contextual information, covering three families of anomalies with varying degrees of severity. As further contribution, we provide a foundation for future work by evaluating baseline methods for Detection, Explainability, and Interpretability, covering all stages of a TSAD pipeline. For Detection, we benchmark a wide range of existing anomaly detectors, testing their effectiveness on the proposed real-world dataset. Then, we consider explainability by evaluating whether measuring the contribution of each dimension in the generated anomaly score can provide accurate anomaly attributions. Finally, for interpretability, we investigate the effectiveness of frozen LLM baselines in localizing and interpreting anomalies.",
+      "authors": [
+        "Roberto Stanzione",
+        "Jules Barbe",
+        "Magali Parrino",
+        "Jérémie Fourmann",
+        "Paul Boniol"
+      ],
+      "affiliations": [],
+      "published": "2026-10-01T06:44:55Z",
+      "published_date": "2026-10-01 06:44:55+00:00",
+      "updated": "2026-10-01T06:44:55Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.DB"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2610.01168v1",
+      "url": "http://arxiv.org/abs/2610.01168v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.5,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 1.6,
+        "recommendation": 7.87
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "anomaly detection",
+        "cs.LG",
+        "cs.AI"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "Detect,_Explain,_Interpret_An_End-to-End_Benchmark_for_Time_Series_Anomaly_Detection,_Explainability_and_Interpretability"
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.00978v1",
+      "title": "Generalist Representation, Specialist Detection: TS-Router for Time-Series Anomaly Detection",
+      "summary": "Time-series anomaly detection (TSAD) is difficult to generalize across datasets because heterogeneous temporal dynamics imply different notions of normality and favor different detection criteria. While time-series foundation models provide transferable representations, coupling them with a fixed anomaly-scoring mechanism can overlook this variation. This motivates a different perspective on foundation-model-based TSAD: using foundation models to coordinate specialized anomaly criteria rather than directly imposing a universal one. Based on this view, we propose \\textbf{TS-Router}, a generalist-representation, specialist-detection framework that estimates the relative competence of heterogeneous anomaly detectors from pretrained temporal representations and selects suitable specialists for each target series. To avoid relying on specialist-performance labels from real tasks, we derive soft competence supervision from specialists' relative performance on labeled simulated tasks. At deployment, routing requires no target anomaly labels, and only the selected specialists are fitted unsupervisedly on the target series. We bound Top-\\(k\\) set-competence regret under representation coverage and conditional competence stability. Across 16 real-world benchmarks and four complementary evaluation metrics, TS-Router achieves the best overall average rank. Controlled ablations with multiple frozen TSFM encoders further support the use of pretrained representations for competence estimation and adaptive specialist selection. The code is available at https://anonymous.4open.science/r/TS-Router-D8FF.",
+      "authors": [
+        "Tian Lan",
+        "Yifei Gao",
+        "Yimeng Lu",
+        "Xuming An",
+        "Meng Wang",
+        "Yue Pan",
+        "Wenjun He",
+        "Chenghao Liu",
+        "Chen Zhang"
+      ],
+      "affiliations": [],
+      "published": "2026-10-01T03:15:18Z",
+      "published_date": "2026-10-01 03:15:18+00:00",
+      "updated": "2026-10-01T03:15:18Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2610.00978v1",
+      "url": "http://arxiv.org/abs/2610.00978v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.5,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 1.6,
+        "recommendation": 7.87
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "anomaly detection",
+        "cs.LG",
+        "cs.AI"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "Generalist_Representation,_Specialist_Detection_TS-Router_for_Time-Series_Anomaly_Detection"
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.01079v1",
+      "title": "Jev-IDS: System One Models for Network Intrusion Detection",
+      "summary": "Machine-learning Network Intrusion Detection Systems (IDS) depend on substantial labeled datasets and task-specific training, whereas Large Language Models (LLMs) detection can analyze flow records directly but incurs higher inference cost and latency, with less constrained outputs. This paper presents JEV-IDS, an open experimental general NIDS based on the Jev System One Model (SOM) to detect zero day intrusions Under label scarcity. JEV-IDS serializes one flow per request and asks JEV two questions: a binary attack probability and a finite-choice traffic category. Our results show that, at k=1, JEV was 4.8 times faster and 3.8 times cheaper than GPT-5.6 Luna, with 1.5 times higher novel-attack recall; it also produced 15 times fewer false alarms than a low-data Random Forest. Across 5,400 decisions on a 300-flow NSL-KDD pilot split, JEV achieved F1-Score 0.859, precision 0.941, recall 0.790, and novel-attack recall 0.838. Increasing k to 2 reduced its F1-Score to 0.839.",
+      "authors": [
+        "Paulo Severo",
+        "Silvio E. Quincozes",
+        "Amanda Dias"
+      ],
+      "affiliations": [],
+      "published": "2026-10-01T05:21:46Z",
+      "published_date": "2026-10-01 05:21:46+00:00",
+      "updated": "2026-10-01T05:21:46Z",
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2610.01079v1",
+      "url": "http://arxiv.org/abs/2610.01079v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.5,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 1.1,
+        "recommendation": 7.7
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "intrusion detection",
+        "cs.CR",
+        "cs.AI"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "Jev-IDS_System_One_Models_for_Network_Intrusion_Detection"
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.00759v1",
+      "title": "Crossing the Cyber Divide: Sim-to-Sim and Sim-to-Real Transfer for RL Agents",
+      "summary": "Cyber attack agents are typically trained and evaluated within a single simulator, making it unclear whether learned policies transfer beyond the environments in which they were developed. This limitation hinders both deployment and fair comparison, as cyber simulators differ substantially in their state representations, observation models, and action spaces. In this paper, we study policy transfer across cyber environments and argue that simulator-to-simulator and simulator-to-real transfer can be viewed as instances of the same underlying alignment problem. We propose a framework that separates state alignment from action translation, enabling a policy trained in one environment to operate in another without retraining. We evaluate transfer across four cyber platforms, CyberBattleSim, NetSecGame, CyberWheel, and NASim, including emulated deployments in NASim. Our experiments show that zero-shot transfer is feasible, fully preserving source-policy performance in closely aligned environments and achieving 45.2% win rates when transferring policies whose source performance is 60.5%. In emulated virtual machine environments, transferred policies exhibit a Jensen-Shannon divergence of 0.085 from native policies, indicating strong behavioral similarity. Code and benchmarks are available at: https://anonymous.4open.science/r/RL-Transfer-between-env-4F47/.",
+      "authors": [
+        "Sabrina Saika",
+        "Yinuo Du",
+        "Aritran Piplai"
+      ],
+      "affiliations": [],
+      "published": "2026-09-30T21:54:29Z",
+      "published_date": "2026-09-30 21:54:29+00:00",
+      "updated": "2026-09-30T21:54:29Z",
+      "categories": [
+        "cs.CR",
+        "cs.LG"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2610.00759v1",
+      "url": "http://arxiv.org/abs/2610.00759v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.3,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 1.2,
+        "recommendation": 7.47
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "cyber attack",
+        "cs.CR",
+        "cs.LG"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "Crossing_the_Cyber_Divide_Sim-to-Sim_and_Sim-to-Real_Transfer_for_RL_Agents"
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.00605v1",
+      "title": "Aging-Aware Online Distributed Scheduling for Lifecycle Carbon Reduction in Geo-Distributed Data Centers",
+      "summary": "The rapid proliferation of data centers (DCs), driven by cloud computing and artificial intelligence (AI), has led to massive energy demand and carbon emissions, posing significant sustainability challenges. Carbon-aware optimization in geographically distributed data centers has been widely studied. Most existing approaches mainly focus on operational carbon emissions from server usage. However, existing literature often ignores workload-induced thermal stress, which accelerates nonlinear hardware degradation. This leads to more frequent server replacements and ultimately increases embodied carbon emissions. To address these limitations, we propose a comprehensive carbon life-cycle modeling framework for distributed data centers. Apart from operational carbon emissions, this work combines workload scheduling with a utilization-dependent exponential aging model to evaluate long-term carbon costs from server degradation. In order to solve the proposed optimization model in an online and privacy-preserving manner, an enhanced Lyapunov framework with time-varying queue shifting (TVQS) is first introduced to handle system uncertainties. Then, a zero-sum perturbation-based alternating direction method of multipliers (ZSP-ADMM) framework is developed to enable distributed coordination across geographically separated data centers while protecting locally exchanged workload information. Simulation results demonstrate that the proposed approach achieves up to 13.0% lower carbon emissions and 12.6% lower operational costs compared with benchmarks.",
+      "authors": [
+        "Junyu Lin",
+        "Wenjie Liu",
+        "Shunbo Lei",
+        "Wentian Lu",
+        "Jianhui Wang",
+        "Junhong Liu"
+      ],
+      "affiliations": [],
+      "published": "2026-09-30T19:10:56Z",
+      "published_date": "2026-09-30 19:10:56+00:00",
+      "updated": "2026-09-30T19:10:56Z",
+      "categories": [
+        "eess.SY"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2610.00605v1",
+      "url": "http://arxiv.org/abs/2610.00605v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.1,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 2.0,
+        "recommendation": 7.47
+      },
+      "matched_domain": "智算中心与电网交互",
+      "matched_keywords": [
+        "data center",
+        "load scheduling",
+        "carbon-aware",
+        "eess.SY"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "Aging-Aware_Online_Distributed_Scheduling_for_Lifecycle_Carbon_Reduction_in_Geo-Distributed_Data_Centers"
+    },
+    {
+      "id": "http://arxiv.org/abs/2610.00968v1",
+      "title": "Structure-agnostic Causal Representation Learning",
+      "summary": "Causal representation learning aims to discover robust features by exploiting the causal structure underlying data generation. Existing methods require specifying the causal structure a priori, yet different structures demand fundamentally incompatible invariance constraints, and misspecification leads to representations that discard predictive information. We introduce SaCRL, a framework that jointly identifies the causal structure and learns the corresponding invariant representation without prior structural knowledge. Our approach formulates structure selection as a soft optimization over candidate invariances using HSIC-based violation metrics, with adaptive weights that automatically concentrate on the achievable structure. We provide theoretical guarantees for structure identification, including under random-feature approximation, invariance satisfaction, and out-of-distribution generalization. Empirically, SaCRL recovers the true structure on synthetic and semi-synthetic Bayesian-network benchmarks, outperforms fixed-invariance baselines on Colored MNIST, achieves state-of-the-art accuracy on three DomainBed benchmarks (PACS, VLCS, OfficeHome), and degrades gracefully under structural misspecification and limited environment diversity. Code is available at: https://github.com/ArmanBehnam/sacrl.",
+      "authors": [
+        "Arman Behnam",
+        "Binghui Wang"
+      ],
+      "affiliations": [],
+      "published": "2026-10-01T02:59:02Z",
+      "published_date": "2026-10-01 02:59:02+00:00",
+      "updated": "2026-10-01T02:59:02Z",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "pdf_url": "https://arxiv.org/pdf/2610.00968v1",
+      "url": "http://arxiv.org/abs/2610.00968v1",
+      "source": "arxiv",
+      "scores": {
+        "relevance": 2.0,
+        "recency": 3.0,
+        "popularity": 2.0,
+        "quality": 2.3,
+        "recommendation": 7.43
+      },
+      "matched_domain": "电网安全与网络攻防",
+      "matched_keywords": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "is_hot_paper": false,
+      "note_filename": "Structure-agnostic_Causal_Representation_Learning"
+    }
+  ]
+}
