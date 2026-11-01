@@ -1,0 +1,372 @@
+0x374 /lib64/ld-linux-x86-64.so.2
+0x9b1 __gmon_start__
+0x9c0 _ITM_deregisterTMCloneTable
+0x9dc _ITM_registerTMCloneTable
+0x9f6 _ZNSt6localeD1Ev
+0xa07 _ZSt20__throw_length_errorPKc
+0xa25 _ZNKRSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEE3strEv
+0xa66 _ZTTNSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEEE
+0xaa6 _ZTVNSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEEE
+0xae6 _ZNSt8ios_baseD2Ev
+0xaf9 _ZdlPvm
+0xb01 _ZNSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEEC1Ev
+0xb42 __cxa_guard_acquire
+0xb56 _ZNSo9_M_insertImEERSoT_
+0xb6f _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EOS4_
+0xbac _ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_
+0xbee _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE15_M_replace_coldEPcmPKcmm
+0xc3e _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6appendEPKc
+0xc7f _ZTVSt15basic_streambufIcSt11char_traitsIcEE
+0xcac _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9push_backEc
+0xcee _ZTVNSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEEE
+0xd2a _ZNSt6localeC1Ev
+0xd3b __cxa_begin_catch
+0xd4d __cxa_guard_abort
+0xd5f __cxa_guard_release
+0xd73 _ZNSt8ios_baseC2Ev
+0xd86 _ZSt21ios_base_library_initv
+0xda3 __gxx_personality_v0
+0xdb8 _ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+0xe06 _ZNSo3putEc
+0xe12 _ZNSo5flushEv
+0xe20 _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC2EOS4_
+0xe5d _ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+0xe95 _Znwm
+0xe9b _ZTVSt9basic_iosIcSt11char_traitsIcEE
+0xec1 _ZNSt9basic_iosIcSt11char_traitsIcEE4initEPSt15basic_streambufIcS1_E
+0xf06 __cxa_rethrow
+0xf14 _ZNSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEED1Ev
+0xf55 _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_mutateEmmPKcm
+0xf9c _ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_disposeEv
+0xfe0 _ZSt4cout
+0xfea __cxa_end_catch
+0xffa _ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base
+0x102a _ZSt19__throw_logic_errorPKc
+0x1047 _Unwind_Resume
+0x1056 stdin
+0x105c strncpy
+0x1064 __stack_chk_fail
+0x1075 memmove
+0x107d fopen
+0x1083 strlen
+0x108a __cxa_atexit
+0x1097 __fprintf_chk
+0x10a5 __fread_chk
+0x10b1 __libc_start_main
+0x10c3 stderr
+0x10ca __cxa_finalize
+0x10d9 memcmp
+0x10e0 fclose
+0x10e7 memcpy
+0x10ee libstdc++.so.6
+0x10fd libgcc_s.so.1
+0x110b libc.so.6
+0x1115 GCC_3.0
+0x111d GLIBC_2.3.4
+0x1129 GLIBC_2.4
+0x1133 GLIBC_2.14
+0x113e GLIBC_2.34
+0x1149 GLIBC_2.7
+0x1153 GLIBC_2.2.5
+0x115f GLIBCXX_3.4.32
+0x116e GLIBCXX_3.4.31
+0x117d GLIBCXX_3.4.26
+0x118c CXXABI_1.3.9
+0x1199 GLIBCXX_3.4.29
+0x11a8 GLIBCXX_3.4.9
+0x11b6 CXXABI_1.3
+0x11c1 GLIBCXX_3.4.21
+0x11d0 GLIBCXX_3.4
+0x1a70 c3 .
+0x25d8 |$pL9
+0x25fa |$`H
+0x260e d$ H
+0x29de D$hdH+
+0x2a04 D$hdH+
+0x2a26 D$hdH+
+0x2a54 AWAVAUATUSH
+0x2a6d D$h1
+0x2ab5 l$@M
+0x2aee l$HB
+0x2af8 D$HH
+0x2b43 |$@H9
+0x2bf3 l$PH
+0x2bf8 D$@H
+0x2c1a |$@f
+0x2c1f ?-qul
+0x2c32 D$PH
+0x2c66 ?--qu
+0x2c74 uiet
+0x2c92 ?-pt%f
+0x2df8 |$ H
+0x2e27 D$hdH+
+0x2e3b []A\A]A^A_
+0x2ea1 PTE1
+0x2f3b u+UH
+0x2fd2 []A\A]
+0x2fe6 ATUSH
+0x302c []A\A]
+0x30b0 f9x r
+0x30c6 fA;x s#H
+0x3150 AWAVAUATUSH
+0x3200 q8H9
+0x3322 |$(I
+0x3327 D$8M
+0x3336 D$8H
+0x3432 ([]A\A]A^A_
+0x3440 AWAVAUATUSH
+0x34f0 q8H9
+0x3612 |$(I
+0x3617 D$8M
+0x3626 D$8H
+0x3722 ([]A\A]A^A_
+0x3730 AWAVAUATUSH
+0x3789 ([]A\A]A^A_
+0x393b ([]A\A]A^A_
+0x3ad0 ;<$r
+0x3b40 AWAVAUATUSH
+0x3bdc d$ H
+0x3c06 |$`H
+0x3c1a )L$ 
+0x3c1f )D$0
+0x3c24 )D$@
+0x3c29 )D$P
+0x3c34 t$(H
+0x3c50 D$(L
+0x3c55 |$pH
+0x3c84 L$ H
+0x3ca1 HcD$
+0x3cc2 D$PH
+0x3ce3 T$@H
+0x3ceb t$HH9
+0x3d43 |$pH
+0x3d48 D$ H
+0x3d76 |$`H
+0x3d91 d$ H
+0x3dd6 []A\A]A^A_
+0x3e22 T$xH
+0x3e36 t$pH
+0x3eed t$pH
+0x3f60 AUATUSH
+0x3f83 l$0H
+0x3ff6 t$8H
+0x4051 []A\A]
+0x4086 AVAUATUH
+0x4331 D$8H
+0x445d D$`L
+0x4470 t$HL
+0x448a t$8H
+0x44a4 T$ H
+0x44bd |$(H
+0x45b0 T$6L
+0x45c3 t$bL
+0x45d0 t$@H
+0x45df T$ H
+0x45e4 |$(H
+0x45f5 |$(H
+0x478c []A\A]A^A_
+0x49ea l$ H
+0x4a1d D$`H
+0x4a26 D$8H9
+0x4a5e t$XL
+0x4aba L$8H
+0x4ad8 L$ H
+0x4add D$XH
+0x4ae2 D$ 1
+0x4b08 L$8H
+0x4bb1 |$8H
+0x4bf3 9x s
+0x4c0a D$8;F 
+0x4c65 |$ H
+0x4c73 D$8I
+0x4de3 |$Hf
+0x4df3 D$(f;D$`
+0x4e5d D$6H
+0x4e66 D$@H9
+0x4e9e t$dL
+0x4efa L$@H
+0x50bd f;D$6
+0x50e0 L$hL
+0x50fc L$pH
+0x517e DYNA
+0x5194 LOADH
+0x51be AMICH
+0x51e8 INTEf
+0x521c NOTEH
+0x5246 PHDRH
+0x5291 GNU_EH_FH
+0x52b3 GNU_STACH
+0x52d5 GNU_RELRH
+0x5307 GNU_PROP
+0x5329 RAMEH
+0x53a9 ERTYH
+0x53d9 t$hH
+0x53fd |$hH
+0x5402 l$hH
+0x5432 l$hL
+0x5437 L$pM
+0x5447 L$xH
+0x544c t$pH
+0x5451 L$hH
+0x5460 L$hH
+0x5470 T$8H
+0x5475 t$pH
+0x5482 L$xL
+0x5487 L$hH
+0x5496 L$hH
+0x5814 Kff.
+0x58d4 Kff.
+0x5c40 )D$ f
+0x5c4d )D$0f
+0x5c5a )D$@f
+0x5c67 )D$Pf
+0x5c74 )D$`f
+0x5c81 )D$pf
+0x5e24 []A\
+0x5e64 AWAVI
+0x5e6b AUATUH
+0x5f69 ([]A\A]A^A_
+0x62e4 AUATUSH
+0x6332 l$ fD9u 
+0x636c x8fD
+0x63cf (H9\$
+0x63d9 D$(D
+0x6414 fD;u 
+0x6453 ([]A\A]A^A_
+0x64e4 AVSH
+0x65c7 )D$ f
+0x65d4 )D$0f
+0x65e1 )D$@f
+0x65ee )D$Pf
+0x65fb )D$`f
+0x6608 )D$pf
+0x66cb tt D
+0x67d4 AUATUSH
+0x6822 l$ D9u 
+0x68be (H9\$
+0x68c8 D$(D
+0x6902 D;u 
+0x6943 ([]A\A]A^A_
+0x69f6 []A\
+0x6a00 []A\
+0x6a20 AVSH
+0x6a57 0[A^A_
+0x6a8c \$,H
+0x6a91 L$ L
+0x6acc L$ D
+0x6ad1 \$,L
+0x6b70 \$ L
+0x6bbe \$ I
+0x6bfd AVAUATUH
+0x6cf9 u5L9$$t
+0x6d1c ([]A\A]A^A_
+0x6dd0 AUATUSH
+0x6dea , I9
+0x6ec5  []A\A]A^
+0x6f8b  []A\A]A^
+0x7412 vIy=
+0x748e K.hq
+0x749d r%/}
+0x74b6 QfYk
+0x74cf }7mh
+0x7510 h%;2
+0x7530 1m#q
+0x753b ?22*8(
+0x755a \&Ua
+0x7578 ]uhg
+0x7596 'Q^/
+0x75d8 nJmD
+0x7618 XPcM
+0x7621 ghp6WA
+0x766a UweO
+0x7675 *o-~
+0x7681 AL*>N+a8!<6s
+0x8008 basic_string: construction from null is not valid
+0x8040 [header] truncated: need at least 64 bytes for an ELF64 header
+0x8080 [header] not an ELF image (bad magic)
+0x80a8   (only ELF64 little-endian is fully supported)
+0x80d8 [symbols] summary unavailable without a section-name table in this build
+0x8128 usage: elfstudy [-q] [-p|-s|-y] [file|-]
+0x8152 unknown
+0x815a vector::_M_realloc_append
+0x8179 ELF64
+0x817f ELF32
+0x8185 little-endian
+0x8193 big-endian
+0x819e ELFStudy
+0x81a7 1.4.2
+0x81b1  ELF structure inspector
+0x81ca [image] 
+0x81d3  bytes loaded
+0x81e1 [header]
+0x81ea   class      : 
+0x81fa   data       : 
+0x820a REL (relocatable)
+0x821c EXEC (executable)
+0x822e DYN (shared object / PIE)
+0x8248 CORE
+0x824d   type       : 
+0x8261 x86-64
+0x8268 AArch64
+0x8270 RISC-V
+0x8277   machine    : 
+0x8287   entry      : 
+0x8297   phoff      : 
+0x82a7  (entsize 
+0x82b2 , count 
+0x82bb   shoff      : 
+0x82cb [program headers] 
+0x82de  entries
+0x82ea  off=
+0x82f0  vaddr=
+0x82f8  filesz=
+0x8301  memsz=
+0x8309 [sections] 
+0x8319 ] name=
+0x8321  addr=
+0x8328  size=
+0x832f --quiet
+0x8337 --program-headers
+0x8349 --sections
+0x8357 --symbols
+0x8364 --help
+0x836b   -q  quiet
+0x8378   -p  program headers only
+0x8394   -s  sections only
+0x83a9   -y  dynamic symbols only
+0x83c8 %s: cannot open '%s'
+0x83de basic_string::_M_replace
+0x83f7 basic_string::_M_create
+0x840f basic_string::append
+0x8430 000102030405060708091011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495293949596979899
+0x868f 9*3$"
+0x895d zPLR
+0xa018 GCC: (Ubuntu 15.2.0-16ubuntu1) 15.2.0
+0xa03f .shstrtab
+0xa049 .note.gnu.build-id
+0xa05c .interp
+0xa064 .gnu.hash
+0xa06e .dynsym
+0xa076 .dynstr
+0xa07e .gnu.version
+0xa08b .gnu.version_r
+0xa09a .rela.dyn
+0xa0a4 .rela.plt
+0xa0ae .init
+0xa0b4 .plt.got
+0xa0bd .plt.sec
+0xa0c6 .text
+0xa0cc .fini
+0xa0d2 .rodata
+0xa0da .eh_frame_hdr
+0xa0e8 .eh_frame
+0xa0f2 .gcc_except_table
+0xa104 .note.gnu.property
+0xa117 .note.ABI-tag
+0xa125 .init_array
+0xa131 .fini_array
+0xa13d .data.rel.ro
+0xa14a .dynamic
+0xa153 .data
+0xa159 .bss
+0xa15e .comment
